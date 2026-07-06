@@ -2789,23 +2789,23 @@
         });
 
         // ============================================================
-        // DATA LOADING — FIXED: handles array, single object, and fallback
+        // DATA LOADING – robustly handles arrays, single objects, and fallback
         // ============================================================
         async function loadClinicData() {
             const params = new URLSearchParams(window.location.search);
             const idParam = params.get('id');
             let file = params.get('file') || 'data';
-            // Clean up: remove leading "data/" and ".json"
+            // Normalise: strip leading "data/" and trailing ".json"
             file = file.replace(/^\/?data\//, '').replace(/\.json$/i, '');
 
             try {
                 const response = await fetch(`/data/${file}.json`);
-                if (!response.ok) throw new Error(`File not found: /data/${file}.json`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}: /data/${file}.json not found`);
 
                 const data = await response.json();
                 console.log(`✅ Loaded ${file}.json:`, data);
 
-                // CASE 1: data is an array (e.g. data.json)
+                // CASE 1: array of clinics (like data.json)
                 if (Array.isArray(data) && data.length > 0) {
                     allClinics = data;
                     let index = 0;
@@ -2818,17 +2818,17 @@
                     return true;
                 }
 
-                // CASE 2: data is a single object (e.g. dammam.json, jeddah.json)
-                if (data && typeof data === 'object') {
+                // CASE 2: single clinic object (like dammam.json, jeddah.json)
+                if (data && typeof data === 'object' && data.constructor === Object) {
                     allClinics = [data];
                     clinicData = normalizeClinicData(data);
                     currentClinicIndex = 0;
                     return true;
                 }
 
-                throw new Error('Unrecognized data format');
+                throw new Error('Data format not recognised (must be array or object)');
             } catch (error) {
-                console.warn('⚠️ Using default clinic data:', error.message);
+                console.warn('⚠️ Falling back to default clinic data:', error.message);
                 clinicData = { ...DEFAULT_CLINIC };
                 allClinics = [clinicData];
                 return false;
@@ -2848,13 +2848,13 @@
                     if (imgParam) {
                         return imgParam.split(',').map(s => s.trim()).filter(Boolean);
                     }
-                } catch (e) { /* ignore */ }
+                } catch (e) { /* ignore malformed url */ }
             }
             return [];
         }
 
         // ============================================================
-        // NORMALIZE — handles multiple data shapes robustly
+        // NORMALISE – handles multiple data shapes robustly
         // ============================================================
         function normalizeClinicData(data) {
             // Detect format: "rich city" has clinicName, "lead" has name+city+address
