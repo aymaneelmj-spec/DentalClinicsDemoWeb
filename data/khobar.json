@@ -1,0 +1,262 @@
+{
+  "citySlug": "khobar",
+  "clinicName": {
+    "ar": "لومير كلينك",
+    "en": "Lumiere Clinic"
+  },
+  "cityLabel": {
+    "ar": "الخبر",
+    "en": "Al Khobar"
+  },
+  "badge": {
+    "ar": "عناية فاخرة بابتسامتك في الخبر",
+    "en": "Luxury Smile Care in Al Khobar"
+  },
+  "heroDesc": {
+    "ar": "عيادة بوتيك لطب الأسنان التجميلي في الخبر، تجربة هادئة وفاخرة من لحظة دخولك.",
+    "en": "A boutique cosmetic dentistry clinic in Al Khobar — a calm, luxurious experience from the moment you arrive."
+  },
+  "phone": "+966501112204",
+  "whatsapp": "966501112204",
+  "email": "info@lumiereclinic-khobar.sa",
+  "address": {
+    "ar": "الخبر - كورنيش الخبر",
+    "en": "Al Khobar - Khobar Corniche"
+  },
+  "lat": 26.2794,
+  "lng": 50.2083,
+  "workingHours": [
+    {
+      "days": {
+        "ar": "السبت - الخميس",
+        "en": "Sat - Thu"
+      },
+      "hours": {
+        "ar": "9:00 ص - 9:00 م",
+        "en": "9:00 AM - 9:00 PM"
+      }
+    },
+    {
+      "days": {
+        "ar": "الجمعة",
+        "en": "Friday"
+      },
+      "hours": {
+        "ar": "مغلق",
+        "en": "Closed"
+      }
+    }
+  ],
+  "social": {
+    "twitter": "",
+    "instagram": "https://instagram.com",
+    "youtube": "",
+    "tiktok": "https://tiktok.com"
+  },
+  "services": [
+    {
+      "id": 1,
+      "icon": "fa-smile",
+      "name": "ابتسامة هوليود",
+      "nameEn": "Hollywood Smile",
+      "desc": "ابتسامة مثالية بتصميم رقمي متقدم",
+      "descEn": "Perfect smile with advanced digital design"
+    },
+    {
+      "id": 2,
+      "icon": "fa-tooth",
+      "name": "زراعة الأسنان",
+      "nameEn": "Dental Implants",
+      "desc": "زراعة دائمة بأحدث التقنيات العالمية",
+      "descEn": "Permanent implants with the latest global technology"
+    },
+    {
+      "id": 3,
+      "icon": "fa-star",
+      "name": "تبييض الأسنان",
+      "nameEn": "Teeth Whitening",
+      "desc": "تبييض فوري وآمن بنتائج مذهلة",
+      "descEn": "Instant and safe whitening with stunning results"
+    },
+    {
+      "id": 4,
+      "icon": "fa-ruler",
+      "name": "تقويم الأسنان",
+      "nameEn": "Orthodontics",
+      "desc": "تقويم شفاف ومريح لابتسامة مثالية",
+      "descEn": "Clear, comfortable orthodontics for a perfect smile"
+    },
+    {
+      "id": 5,
+      "icon": "fa-gem",
+      "name": "عدسات الأسنان",
+      "nameEn": "Veneers",
+      "desc": "عدسات خزفية فاخرة لابتسامة ساحرة",
+      "descEn": "Luxury ceramic veneers for a stunning smile"
+    },
+    {
+      "id": 6,
+      "icon": "fa-shield-alt",
+      "name": "علاج الجذور",
+      "nameEn": "Root Canal",
+      "desc": "علاج دقيق وخالٍ من الألم لجذور الأسنان",
+      "descEn": "Precise, pain-free root canal treatment"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "name": "د. ياسر النعيمي",
+      "nameEn": "Dr. Yasser Al-Nuaimi",
+      "specialty": "استشاري تجميل وزراعة الأسنان",
+      "specialtyEn": "Consultant Cosmetic & Implant Dentistry",
+      "years": 17,
+      "certs": "جامعة الإمام عبدالرحمن - زمالة أمريكية",
+      "certsEn": "IAU - American Fellowship"
+    },
+    {
+      "id": 2,
+      "name": "د. رغد العبدالله",
+      "nameEn": "Dr. Raghad Al-Abdullah",
+      "specialty": "استشارية تبييض وعدسات",
+      "specialtyEn": "Consultant Whitening & Veneers",
+      "years": 10,
+      "certs": "جامعة الإمام عبدالرحمن - دبلوم تجميلي",
+      "certsEn": "IAU - Cosmetic Dentistry Diploma"
+    },
+    {
+      "id": 3,
+      "name": "د. نواف الشمري",
+      "nameEn": "Dr. Nawaf Al-Shammari",
+      "specialty": "استشاري تقويم الأسنان",
+      "specialtyEn": "Consultant Orthodontist",
+      "years": 13,
+      "certs": "جامعة الملك فيصل - زمالة أوروبية",
+      "certsEn": "King Faisal University - European Fellowship"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 2,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 3,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 4,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 5,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 6,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "لجين الدوسري",
+      "nameEn": "Lujain Al-Dosari",
+      "rating": 5,
+      "text": "أجواء العيادة فاخرة جداً وتشعرك بالراحة من أول ثانية.",
+      "textEn": "The clinic atmosphere is so luxurious, you feel comfortable from the first second."
+    },
+    {
+      "id": 2,
+      "name": "بندر السبيعي",
+      "nameEn": "Bandar Al-Subaie",
+      "rating": 5,
+      "text": "زراعة الأسنان تمت بدون أي مضاعفات والدكتور تابع معي أسبوعياً.",
+      "textEn": "The implant procedure had no complications, and the doctor followed up weekly."
+    },
+    {
+      "id": 3,
+      "name": "شهد المالكي",
+      "nameEn": "Shahad Al-Malki",
+      "rating": 5,
+      "text": "عدسات الأسنان طبيعية جداً، لا أحد صدق إنها مو أسناني الأصلية.",
+      "textEn": "The veneers look so natural, no one believed they weren't my real teeth."
+    },
+    {
+      "id": 4,
+      "name": "سعود القحطاني",
+      "nameEn": "Saud Al-Qahtani",
+      "rating": 5,
+      "text": "أفضل استثمار سويته لابتسامتي، أنصح فيها بقوة.",
+      "textEn": "Best investment I made for my smile, strongly recommend it."
+    }
+  ],
+  "reels": [
+    {
+      "id": 1,
+      "title": "ابتسامة هوليود",
+      "titleEn": "Hollywood Smile",
+      "url": ""
+    },
+    {
+      "id": 2,
+      "title": "زراعة الأسنان",
+      "titleEn": "Dental Implants",
+      "url": ""
+    },
+    {
+      "id": 3,
+      "title": "تبييض الأسنان",
+      "titleEn": "Teeth Whitening",
+      "url": ""
+    },
+    {
+      "id": 4,
+      "title": "جولة داخل عيادة الخبر",
+      "titleEn": "Clinic Tour",
+      "url": ""
+    }
+  ],
+  "faq": [
+    {
+      "q": "ما هي مدة علاج ابتسامة هوليود؟",
+      "qEn": "How long does a Hollywood Smile take?",
+      "a": "تتراوح مدة العلاج بين 3 إلى 5 جلسات حسب حالة كل مريض، مع إمكانية الحصول على نتائج أولية فورية.",
+      "aEn": "Treatment ranges from 3 to 5 sessions depending on the case, with immediate preliminary results possible."
+    },
+    {
+      "q": "هل زراعة الأسنان مؤلمة؟",
+      "qEn": "Are dental implants painful?",
+      "a": "يتم الإجراء تحت تخدير موضعي كامل، لذلك لا يشعر المريض بأي ألم أثناء الجراحة، ويوصف مسكن مناسب بعدها.",
+      "aEn": "The procedure is done under full local anesthesia, so there is no pain during surgery, with painkillers prescribed after."
+    },
+    {
+      "q": "كم تستمر نتائج التبييض؟",
+      "qEn": "How long do whitening results last?",
+      "a": "تستمر نتائج التبييض من سنة إلى 3 سنوات حسب العناية الفموية ونمط الحياة، مع إمكانية جلسات صيانة.",
+      "aEn": "Whitening lasts 1 to 3 years depending on oral care and lifestyle, with optional maintenance sessions."
+    },
+    {
+      "q": "هل تقبلون التأمين الطبي؟",
+      "qEn": "Do you accept medical insurance?",
+      "a": "نعم، نتعامل مع أغلب شركات التأمين الطبي الكبرى في المملكة، تواصل معنا للتأكد من شركتك.",
+      "aEn": "Yes, we work with most major medical insurance providers in the Kingdom — contact us to confirm your provider."
+    }
+  ]
+}

@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إيليت سمايل | Elite Smile</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <!-- ===== MAIN STYLES ===== -->
+    <style>
+        /* ============================================================
+                   CSS VARIABLES & RESET
+                   ============================================================ */
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8d5a3;
+            --gold-dark: #a8893a;
+            --gold-glow: rgba(201, 168, 76, 0.3);
+            --gold-glow-soft: rgba(201, 168, 76, 0.08);
+
+            --bg-primary: #faf6f0;
+            --bg-secondary: #f0ebe0;
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --bg-card-hover: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.12);
+
+            --text-primary: #1a1a2e;
+            --text-secondary: #2d2d44;
+            --text-muted: rgba(26, 26, 46, 0.55);
+            --text-muted-2: rgba(26, 26, 46, 0.35);
+
+            --border-light: rgba(255, 255, 255, 0.6);
+            --border-soft: rgba(26, 26, 46, 0.06);
+
+            --shadow-sm: 0 8px 40px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 48px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.06);
+            --shadow-gold: 0 8px 40px rgba(201, 168, 76, 0.25);
+
+            --header-bg: rgba(250, 246, 240, 0.88);
+            --footer-bg: #1a1a2e;
+            --footer-text: rgba(255, 255, 255, 0.7);
+
+            --input-bg: rgba(255, 255, 255, 0.5);
+            --input-border: rgba(26, 26, 46, 0.08);
+
+            --whatsapp-shadow: rgba(37, 211, 102, 0.35);
+
+            --radius-card: 24px;
+            --radius-btn: 60px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ===== DARK THEME ===== */
+        [data-theme="dark"] {
+            --bg-primary: #0f0f1e;
+            --bg-secondary: #181830;
+            --bg-card: rgba(30, 30, 55, 0.75);
+            --bg-card-hover: rgba(45, 45, 70, 0.9);
+            --bg-glass: rgba(255, 255, 255, 0.04);
+
+            --text-primary: #f0ebe0;
+            --text-secondary: #e8e0d4;
+            --text-muted: rgba(240, 235, 224, 0.55);
+            --text-muted-2: rgba(240, 235, 224, 0.35);
+
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-soft: rgba(255, 255, 255, 0.04);
+
+            --shadow-sm: 0 8px 40px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 48px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --shadow-gold: 0 8px 40px rgba(201, 168, 76, 0.15);
+
+            --header-bg: rgba(15, 15, 30, 0.92);
+            --footer-bg: #080812;
+            --footer-text: rgba(255, 255, 255, 0.6);
+
+            --input-bg: rgba(30, 30, 55, 0.6);
+            --input-border: rgba(255, 255, 255, 0.06);
+
+            --whatsapp-shadow: rgba(37, 211, 102, 0.2);
+            --gold-glow: rgba(201, 168, 76, 0.2);
+            --gold-glow-soft: rgba(201, 168, 76, 0.04);
+        }
+
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            direction: rtl;
+            transition: background 0.4s ease, color 0.4s ease;
+            line-height: 1.6;
+        }
+
+        .lang-en body {
+            direction: ltr;
+        }
+        .lang-en .ar-only {
+            display: none !important;
+        }
+        .lang-ar .en-only {
+            display: none !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+                   LOADING SCREEN
+                   ============================================================ */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-ring {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(201, 168, 76, 0.15);
+            border-top-color: var(--gold);
+            animation: spin 1s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+            position: relative;
+        }
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border-radius: 50%;
+            border: 2px solid rgba(201, 168, 76, 0.08);
+            border-top-color: var(--gold-light);
+            animation: spin 1.6s cubic-bezier(0.6, 0, 0.4, 1) infinite reverse;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .loader-logo {
+            margin-top: 32px;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            opacity: 0;
+            animation: fadeUpLogo 0.8s ease 0.4s forwards;
+        }
+        .loader-logo span {
+            color: var(--gold);
+        }
+        @keyframes fadeUpLogo {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .loader-shimmer {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent, rgba(201, 168, 76, 0.1), transparent, rgba(201, 168, 76, 0.05), transparent);
+            animation: shimmerSpin 3s linear infinite;
+        }
+        @keyframes shimmerSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================================
+                   CONTAINER
+                   ============================================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 40px;
+            }
+        }
+
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn-gold {
+            background: var(--gold);
+            color: #fff;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: var(--radius-btn);
+            transition: all var(--transition);
+            box-shadow: 0 4px 24px var(--shadow-gold);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px var(--shadow-gold);
+            background: #b8943a;
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--gold);
+            font-weight: 700;
+            padding: 12px 34px;
+            border-radius: var(--radius-btn);
+            border: 2px solid var(--gold);
+            transition: all var(--transition);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px var(--shadow-gold);
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: var(--radius-btn);
+            transition: all var(--transition);
+            box-shadow: 0 4px 20px var(--whatsapp-shadow);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px var(--whatsapp-shadow);
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 13px;
+        }
+
+        /* ============================================================
+                   HEADER
+                   ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 14px 0;
+            transition: all var(--transition);
+            background: transparent;
+        }
+        .header.scrolled {
+            background: var(--header-bg);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.04);
+            padding: 10px 0;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .header .logo span {
+            color: var(--gold);
+        }
+        .nav-link {
+            position: relative;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            padding: 4px 0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition);
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* ============================================================
+                   MOBILE MENU
+                   ============================================================ */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 998;
+            background: var(--bg-primary);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 40px;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .mobile-menu a {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+        .mobile-menu a:hover {
+            color: var(--gold);
+            transform: scale(1.05);
+        }
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 26px;
+            color: var(--text-primary);
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .menu-toggle:hover {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+                   TOGGLES (Lang + Theme)
+                   ============================================================ */
+        .lang-toggle,
+        .theme-toggle {
+            background: var(--bg-card);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-btn);
+            padding: 4px 6px;
+            display: flex;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .lang-toggle button,
+        .theme-toggle button {
+            background: none;
+            border: none;
+            padding: 4px 12px;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 12px;
+            transition: all 0.3s;
+            color: var(--text-muted-2);
+        }
+        .lang-toggle button.active,
+        .theme-toggle button.active {
+            background: var(--gold);
+            color: #fff;
+            box-shadow: 0 2px 12px var(--shadow-gold);
+        }
+        .lang-toggle button:not(.active):hover,
+        .theme-toggle button:not(.active):hover {
+            color: var(--text-primary);
+        }
+        .theme-toggle button {
+            font-size: 14px;
+            padding: 4px 10px;
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+            padding-top: 80px;
+            padding-bottom: 40px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 80%;
+            height: 120%;
+            background: radial-gradient(ellipse, var(--gold-glow-soft) 0%, transparent 70%);
+            pointer-events: none;
+            animation: floatBg 12s ease-in-out infinite alternate;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(ellipse, var(--gold-glow-soft) 0%, transparent 70%);
+            pointer-events: none;
+            animation: floatBg 15s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes floatBg {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(30px, -30px) scale(1.05);
+            }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold-glow-soft);
+            color: var(--gold-dark);
+            padding: 6px 18px;
+            border-radius: var(--radius-btn);
+            font-size: 13px;
+            font-weight: 700;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+        }
+        .hero-title {
+            font-size: clamp(2.6rem, 7vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin: 20px 0 16px;
+        }
+        .hero-title span {
+            color: var(--gold);
+            position: relative;
+        }
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gold-glow-soft);
+            border-radius: 4px;
+        }
+        .hero-desc {
+            font-size: clamp(1rem, 1.3vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 540px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-visual-inner {
+            width: 100%;
+            max-width: 520px;
+            aspect-ratio: 1/1.1;
+            border-radius: 40px;
+            background: var(--gold-glow-soft);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual-inner .placeholder-img {
+            font-size: 120px;
+            opacity: 0.15;
+            color: var(--gold);
+        }
+        .hero-visual-inner .smile-icon {
+            font-size: 80px;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+        }
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gold-glow-soft);
+            border: 1px solid rgba(201, 168, 76, 0.06);
+            animation: floatShape 8s ease-in-out infinite alternate;
+        }
+        .floating-shape:nth-child(1) {
+            width: 180px;
+            height: 180px;
+            top: -40px;
+            right: -40px;
+            animation-delay: 0s;
+        }
+        .floating-shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            bottom: -30px;
+            left: -30px;
+            animation-delay: 2s;
+            animation-duration: 10s;
+        }
+        .floating-shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 4s;
+            animation-duration: 12s;
+        }
+        @keyframes floatShape {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(20px, -20px) scale(1.08);
+            }
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 32px;
+            margin-top: 24px;
+        }
+        .hero-stats .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .hero-stats .stat-item i {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+                   SECTION COMMON
+                   ============================================================ */
+        .section-padding {
+            padding: 80px 0;
+        }
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 50px 0;
+            }
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .section-title span {
+            color: var(--gold);
+        }
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+                   GLASS CARDS
+                   ============================================================ */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            background: var(--bg-card-hover);
+        }
+
+        .glass-card-gold {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .glass-card-gold:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px var(--gold-glow-soft), 0 0 0 1px rgba(201, 168, 76, 0.1);
+            background: var(--bg-card-hover);
+        }
+
+        /* ============================================================
+                   SERVICES
+                   ============================================================ */
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: var(--gold-glow-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--gold);
+            transition: all var(--transition);
+            margin: 0 auto;
+        }
+        .glass-card-gold:hover .service-icon {
+            background: var(--gold);
+            color: #fff;
+            transform: scale(1.05) rotate(-4deg);
+        }
+
+        /* ============================================================
+                   DOCTORS
+                   ============================================================ */
+        .doctor-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            background: var(--bg-card-hover);
+        }
+        .doctor-card .img-wrap {
+            height: 220px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: var(--gold-glow-soft);
+            position: relative;
+        }
+        .doctor-card .img-wrap .badge-cert {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: var(--gold-glow-soft);
+            backdrop-filter: blur(8px);
+            padding: 4px 14px;
+            border-radius: var(--radius-btn);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold-dark);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        .doctor-card.selected {
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 0 4px var(--gold-glow-soft);
+        }
+        .doctor-card .card-body {
+            padding: 24px;
+        }
+
+        /* ============================================================
+                   BEFORE / AFTER
+                   ============================================================ */
+        .ba-slide {
+            border-radius: 28px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--gold-glow-soft);
+            position: relative;
+        }
+        .ba-slide .label {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: var(--radius-btn);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+                   TESTIMONIALS
+                   ============================================================ */
+        .testimonial-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 32px 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonial-card .quote-icon {
+            font-size: 32px;
+            color: var(--gold);
+            opacity: 0.2;
+            margin-bottom: 8px;
+        }
+        .testimonial-card .stars {
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        /* ============================================================
+                   REELS
+                   ============================================================ */
+        .reel-card {
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            max-height: 420px;
+            background: linear-gradient(145deg, var(--text-secondary), var(--text-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 48px;
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .reel-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        .reel-card .play-btn {
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 22px;
+            transition: all var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .reel-card:hover .play-btn {
+            background: rgba(201, 168, 76, 0.8);
+            transform: scale(1.1);
+        }
+        .reel-card .reel-title {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ============================================================
+                   APPOINTMENT
+                   ============================================================ */
+        .appointment-form {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: 32px;
+            padding: 40px 36px;
+            box-shadow: var(--shadow-sm);
+        }
+        .appointment-form input,
+        .appointment-form select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            backdrop-filter: blur(4px);
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s;
+            color: var(--text-primary);
+            outline: none;
+        }
+        .appointment-form input:focus,
+        .appointment-form select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px var(--gold-glow-soft);
+            background: var(--bg-card-hover);
+        }
+        .appointment-form label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            display: block;
+        }
+        .appointment-form .input-group {
+            margin-bottom: 18px;
+        }
+        .appointment-form .doctor-select-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .appointment-form .doctor-option {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 2px solid var(--input-border);
+            background: var(--input-bg);
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+        .appointment-form .doctor-option:hover {
+            border-color: var(--gold);
+            background: var(--gold-glow-soft);
+        }
+        .appointment-form .doctor-option.active {
+            border-color: var(--gold);
+            background: var(--gold-glow-soft);
+            box-shadow: 0 0 0 3px var(--gold-glow-soft);
+        }
+
+        /* ============================================================
+                   FAQ
+                   ============================================================ */
+        .faq-item {
+            border-bottom: 1px solid var(--border-soft);
+            padding: 18px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text-primary);
+            transition: color 0.3s;
+            gap: 16px;
+        }
+        .faq-question:hover {
+            color: var(--gold);
+        }
+        .faq-question .icon {
+            font-size: 20px;
+            transition: transform var(--transition);
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-question .icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-top: 12px;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -20%;
+            width: 70%;
+            height: 120%;
+            background: radial-gradient(ellipse, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .footer .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer .logo span {
+            color: var(--gold);
+        }
+        .footer a {
+            color: var(--footer-text);
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+        .footer .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+            transition: all var(--transition);
+        }
+        .footer .social-icon:hover {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px var(--shadow-gold);
+        }
+        .footer .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+        }
+        .footer .hours-grid .day {
+            font-weight: 600;
+        }
+        .footer .hours-grid .time {
+            text-align: left;
+        }
+        .lang-en .footer .hours-grid .time {
+            text-align: right;
+        }
+
+        /* ============================================================
+                   FLOATING WHATSAPP
+                   ============================================================ */
+        .floating-wa {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 8px 40px var(--whatsapp-shadow);
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .floating-wa:hover {
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 16px 56px var(--whatsapp-shadow);
+        }
+        .floating-wa .pulse {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(37, 211, 102, 0.2);
+            animation: pulseWa 2s ease-out infinite;
+        }
+        @keyframes pulseWa {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================================
+                   MODAL
+                   ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        .modal-box {
+            background: var(--bg-primary);
+            border-radius: 32px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-light);
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        @keyframes modalIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-box .close-modal {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+            float: left;
+        }
+        .modal-box .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        /* ============================================================
+                   TOAST
+                   ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 16px 28px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            max-width: 90%;
+        }
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast .icon {
+            font-size: 24px;
+            color: #25d366;
+        }
+
+        /* ============================================================
+                   MAP
+                   ============================================================ */
+        .map-container {
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 340px;
+            border: 0;
+            display: block;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 60px;
+            }
+            .hero-visual-inner {
+                max-width: 100%;
+                aspect-ratio: 1/0.9;
+                border-radius: 28px;
+            }
+            .appointment-form {
+                padding: 28px 20px;
+            }
+            .testimonial-card {
+                padding: 24px 20px;
+            }
+            .doctor-card .img-wrap {
+                height: 180px;
+            }
+            .floating-wa {
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+                bottom: 20px;
+                left: 20px;
+            }
+            .mobile-menu a {
+                font-size: 24px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .appointment-form .doctor-select-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            }
+            .hero-stats {
+                gap: 12px 20px;
+            }
+            .hero-stats .stat-item {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .btn-gold,
+            .btn-outline-gold {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            .header .logo {
+                font-size: 20px;
+            }
+            .appointment-form {
+                padding: 20px 16px;
+            }
+            .reel-card {
+                max-height: 280px;
+            }
+            .appointment-form .doctor-select-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ============================================================
+                   UTILITIES
+                   ============================================================ */
+        .text-gold {
+            color: var(--gold);
+        }
+        .bg-gold-soft {
+            background: var(--gold-glow-soft);
+        }
+        .gap-6 {
+            gap: 24px;
+        }
+        .gap-8 {
+            gap: 32px;
+        }
+        .gap-12 {
+            gap: 48px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .justify-center {
+            justify-content: center;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .grid {
+            display: grid;
+        }
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .md\:grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .lg\:grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .lg\:grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .lg\:grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            .grid-cols-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-cols-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-cols-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+        .lg\:flex {
+            display: flex;
+        }
+        @media (max-width: 1024px) {
+            .lg\:flex {
+                display: none;
+            }
+            .lg\:hidden {
+                display: flex;
+            }
+            .lg\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .lg\:grid-cols-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .lg\:grid-cols-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .lg\:hidden {
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            .lg\:hidden {
+                display: none;
+            }
+            .lg\:flex {
+                display: flex;
+            }
+        }
+
+        .text-sm {
+            font-size: 14px;
+        }
+        .text-xs {
+            font-size: 12px;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .font-semibold {
+            font-weight: 600;
+        }
+        .mt-4 {
+            margin-top: 16px;
+        }
+        .mt-8 {
+            margin-top: 32px;
+        }
+        .mt-12 {
+            margin-top: 48px;
+        }
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+        .mb-16 {
+            margin-bottom: 64px;
+        }
+        .p-6 {
+            padding: 24px;
+        }
+        .p-8 {
+            padding: 32px;
+        }
+        .py-20 {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .gap-3 {
+            gap: 12px;
+        }
+        .gap-4 {
+            gap: 16px;
+        }
+        .gap-6 {
+            gap: 24px;
+        }
+        .gap-8 {
+            gap: 32px;
+        }
+        .gap-10 {
+            gap: 40px;
+        }
+        .relative {
+            position: relative;
+        }
+        .absolute {
+            position: absolute;
+        }
+        .top-6 {
+            top: 24px;
+        }
+        .left-6 {
+            left: 24px;
+        }
+        .text-3xl {
+            font-size: 30px;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .text-muted-2 {
+            color: var(--text-muted-2);
+        }
+        .text-white {
+            color: #fff;
+        }
+        .border-t {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .border-white\/10 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .bg-none {
+            background: none;
+        }
+        .border-none {
+            border: none;
+        }
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        .space-y-3>*+* {
+            margin-top: 12px;
+        }
+        .space-y-2>*+* {
+            margin-top: 8px;
+        }
+        .leading-relaxed {
+            line-height: 1.7;
+        }
+
+        /* Swiper overrides */
+        .swiper-pagination-bullet {
+            background: var(--gold) !important;
+            opacity: 0.3;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: var(--gold) !important;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--gold) !important;
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+        }
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 18px !important;
+        }
+
+        /* ============================================================
+                   DARK THEME SELECT OVERRIDES
+                   ============================================================ */
+        [data-theme="dark"] select,
+        [data-theme="dark"] select option {
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+        [data-theme="dark"] select option {
+            background: var(--bg-primary);
+        }
+        [data-theme="dark"] .appointment-form select option {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        [data-theme="dark"] .clinic-selector select {
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+        [data-theme="dark"] .clinic-selector select option {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    LOADING SCREEN
+    ============================================================ -->
+    <div id="loading-screen" role="status" aria-label="جاري التحميل">
+        <div class="loader-ring">
+            <div class="loader-shimmer"></div>
+        </div>
+        <div class="loader-logo">إيليت <span>سمايل</span></div>
+        <p style="margin-top:12px;font-size:14px;color:var(--text-muted-2);font-weight:300;letter-spacing:2px;">ELITE SMILE</p>
+    </div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast" id="toast">
+        <span class="icon"><i class="fas fa-check-circle"></i></span>
+        <span id="toastMessage">تم الإرسال بنجاح</span>
+    </div>
+
+    <!-- ============================================================
+    MODAL
+    ============================================================ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div id="modalContent">
+                <h3 style="font-size:22px;font-weight:800;margin-bottom:12px;" class="ar-only">تأكيد الحجز</h3>
+                <h3 style="font-size:22px;font-weight:800;margin-bottom:12px;" class="en-only">Confirm Booking</h3>
+                <p id="modalMessage" style="color:var(--text-muted);line-height:1.7;margin-bottom:20px;"></p>
+                <button class="btn-gold w-full justify-center" id="modalConfirmBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="ar-only">إرسال عبر واتساب</span>
+                    <span class="en-only">Send via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header" id="header" role="banner">
+        <div class="container flex items-center justify-between">
+            <a href="#" class="logo">إيليت <span>سمايل</span></a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8" aria-label="القائمة الرئيسية">
+                <a href="#services" class="nav-link ar-only">الخدمات</a>
+                <a href="#doctors" class="nav-link ar-only">الأطباء</a>
+                <a href="#gallery" class="nav-link ar-only">نتائجنا</a>
+                <a href="#testimonials" class="nav-link ar-only">آراء العملاء</a>
+                <a href="#appointment" class="nav-link ar-only">احجز موعد</a>
+                <a href="#services" class="nav-link en-only">Services</a>
+                <a href="#doctors" class="nav-link en-only">Doctors</a>
+                <a href="#gallery" class="nav-link en-only">Gallery</a>
+                <a href="#testimonials" class="nav-link en-only">Reviews</a>
+                <a href="#appointment" class="nav-link en-only">Book</a>
+            </nav>
+
+            <!-- Desktop Actions -->
+            <div class="hidden lg:flex items-center gap-3">
+                <a href="#" target="_blank" class="btn-whatsapp btn-sm" id="headerWhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="ar-only">واتساب</span>
+                    <span class="en-only">WhatsApp</span>
+                </a>
+                <a href="#appointment" class="btn-gold btn-sm ar-only">
+                    <i class="fas fa-calendar-check"></i> احجز
+                </a>
+                <a href="#appointment" class="btn-gold btn-sm en-only">
+                    <i class="fas fa-calendar-check"></i> Book
+                </a>
+                <div class="theme-toggle" role="group" aria-label="تبديل المظهر">
+                    <button class="active" data-theme="light" aria-label="فاتح"><i class="fas fa-sun"></i></button>
+                    <button data-theme="dark" aria-label="داكن"><i class="fas fa-moon"></i></button>
+                </div>
+                <div class="lang-toggle" role="group" aria-label="تبديل اللغة">
+                    <button class="active" data-lang="ar" aria-label="العربية">ع</button>
+                    <button data-lang="en" aria-label="English">EN</button>
+                </div>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="lg:hidden flex items-center gap-3">
+                <div class="theme-toggle" role="group" aria-label="تبديل المظهر">
+                    <button class="active" data-theme="light" aria-label="فاتح"><i class="fas fa-sun"></i></button>
+                    <button data-theme="dark" aria-label="داكن"><i class="fas fa-moon"></i></button>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MOBILE MENU
+    ============================================================ -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="القائمة">
+        <button class="absolute top-6 left-6 text-3xl text-muted hover:text-gold transition-colors bg-none border-none" id="closeMenu" aria-label="إغلاق القائمة">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#services" class="ar-only" onclick="closeMobileMenu()">الخدمات</a>
+        <a href="#doctors" class="ar-only" onclick="closeMobileMenu()">الأطباء</a>
+        <a href="#gallery" class="ar-only" onclick="closeMobileMenu()">نتائجنا</a>
+        <a href="#testimonials" class="ar-only" onclick="closeMobileMenu()">آراء العملاء</a>
+        <a href="#appointment" class="ar-only" onclick="closeMobileMenu()">احجز موعد</a>
+        <a href="#services" class="en-only" onclick="closeMobileMenu()">Services</a>
+        <a href="#doctors" class="en-only" onclick="closeMobileMenu()">Doctors</a>
+        <a href="#gallery" class="en-only" onclick="closeMobileMenu()">Gallery</a>
+        <a href="#testimonials" class="en-only" onclick="closeMobileMenu()">Reviews</a>
+        <a href="#appointment" class="en-only" onclick="closeMobileMenu()">Book</a>
+        <div class="flex items-center gap-4 mt-4 flex-wrap justify-center">
+            <a href="#" target="_blank" class="btn-whatsapp btn-sm" id="mobileWhatsApp">
+                <i class="fab fa-whatsapp"></i>
+                <span class="ar-only">واتساب</span>
+                <span class="en-only">WhatsApp</span>
+            </a>
+        </div>
+        <div class="flex items-center gap-3 mt-4">
+            <div class="lang-toggle" role="group" aria-label="تبديل اللغة">
+                <button class="active" data-lang="ar" aria-label="العربية">ع</button>
+                <button data-lang="en" aria-label="English">EN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FLOATING WHATSAPP
+    ============================================================ -->
+    <a href="#" target="_blank" class="floating-wa" id="floatingWa" aria-label="تواصل عبر واتساب">
+        <span class="pulse"></span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ============================================================
+    MAIN
+    ============================================================ -->
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="hero" aria-label="القسم الرئيسي">
+            <div class="container hero-content w-full">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="hero-badge mb-4 ar-only">
+                            <i class="fas fa-star" style="color:var(--gold);"></i>
+                            <span id="heroBadgeAr">عيادة رائدة في الرياض</span>
+                        </div>
+                        <div class="hero-badge mb-4 en-only">
+                            <i class="fas fa-star" style="color:var(--gold);"></i>
+                            <span id="heroBadgeEn">Leading Clinic in Riyadh</span>
+                        </div>
+                        <h1 class="hero-title ar-only">
+                            ابتسامتك <span>مستقبلنا</span>
+                        </h1>
+                        <h1 class="hero-title en-only">
+                            Your Smile <span>Our Future</span>
+                        </h1>
+                        <p class="hero-desc ar-only" id="heroDescAr">
+                            نقدم أفضل خدمات طب الأسنان التجميلية والعلاجية في <span id="heroCityAr">الرياض</span> بأحدث التقنيات وبأيدي نخبة من الأطباء المتخصصين.
+                        </p>
+                        <p class="hero-desc en-only" id="heroDescEn">
+                            We offer the best cosmetic and therapeutic dental services in <span id="heroCityEn">Riyadh</span> with the latest technologies and a team of specialized doctors.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mt-8">
+                            <a href="#appointment" class="btn-gold ar-only">
+                                <i class="fas fa-calendar-check"></i> احجز موعدك
+                            </a>
+                            <a href="#appointment" class="btn-gold en-only">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <a href="#" target="_blank" class="btn-outline-gold ar-only" id="heroWhatsAppAr">
+                                <i class="fab fa-whatsapp"></i> تواصل واتساب
+                            </a>
+                            <a href="#" target="_blank" class="btn-outline-gold en-only" id="heroWhatsAppEn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <span class="stat-item"><i class="fas fa-check-circle"></i> <span class="ar-only">أطباء استشاريون</span><span class="en-only">Consultants</span></span>
+                            <span class="stat-item"><i class="fas fa-check-circle"></i> <span class="ar-only">تقنيات حديثة</span><span class="en-only">Modern Tech</span></span>
+                            <span class="stat-item"><i class="fas fa-check-circle"></i> <span class="ar-only">نتائج مضمونة</span><span class="en-only">Guaranteed</span></span>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="hero-visual">
+                       <div class="hero-visual-inner" style="background-image: url('assets/images/hero/1.jpg'); background-size: cover; background-position: center;">
+    <!-- Keep overlay or remove based on design preference -->
+    <div style="position:absolute;inset:0;background:rgba(250,246,240,0.3);"></div>
+    <!-- Keep floating shapes and icons if desired -->
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="placeholder-img" style="opacity:0.1;"><i class="fas fa-tooth"></i></div>
+    <div class="smile-icon" style="bottom:20%;right:15%;"><i class="fas fa-smile"></i></div>
+    <div class="smile-icon" style="top:20%;left:15%;font-size:40px;"><i class="fas fa-star"></i></div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SERVICES ===== -->
+        <section class="section-padding" id="services" aria-label="الخدمات">
+            <div class="container">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">خدماتنا <span>الرئيسية</span></h2>
+                    <h2 class="section-title en-only">Our <span>Services</span></h2>
+                    <p class="section-sub mx-auto mt-4 ar-only">نقدم أحدث تقنيات طب الأسنان التجميلي والعلاجي في بيئة فاخرة ومريحة</p>
+                    <p class="section-sub mx-auto mt-4 en-only">We offer the latest cosmetic and therapeutic dental technologies in a luxurious and comfortable environment</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="servicesContainer"></div>
+            </div>
+        </section>
+
+        <!-- ===== DOCTORS ===== -->
+        <section class="section-padding bg-gold-soft" id="doctors" aria-label="الأطباء">
+            <div class="container">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">أطباؤنا <span>الاستشاريون</span></h2>
+                    <h2 class="section-title en-only">Our <span>Consultants</span></h2>
+                    <p class="section-sub mx-auto mt-4 ar-only">نخبة من أمهر أطباء الأسنان في الرياض بخبرات دولية</p>
+                    <p class="section-sub mx-auto mt-4 en-only">An elite group of the most skilled dentists in Riyadh with international experience</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="doctorsContainer"></div>
+            </div>
+        </section>
+
+        <!-- ===== BEFORE/AFTER ===== -->
+        <section class="section-padding" id="gallery" aria-label="معرض النتائج">
+            <div class="container">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">نتائج <span>ابتساماتنا</span></h2>
+                    <h2 class="section-title en-only">Our <span>Results</span></h2>
+                    <p class="section-sub mx-auto mt-4 ar-only">شاهد الفرق بنفسك قبل وبعد العلاج في عيادة إيليت سمايل</p>
+                    <p class="section-sub mx-auto mt-4 en-only">See the difference for yourself before and after treatment at Elite Smile</p>
+                </div>
+                <div class="swiper gallerySwiper" data-aos="fade-up">
+                    <div class="swiper-wrapper" id="galleryContainer"></div>
+                    <div class="swiper-pagination mt-6 relative"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIALS ===== -->
+        <section class="section-padding bg-gold-soft" id="testimonials" aria-label="آراء العملاء">
+            <div class="container">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">آراء <span>عملائنا</span></h2>
+                    <h2 class="section-title en-only">Client <span>Reviews</span></h2>
+                    <p class="section-sub mx-auto mt-4 ar-only">ما يقوله عملاؤنا عن تجربتهم في عيادة إيليت سمايل</p>
+                    <p class="section-sub mx-auto mt-4 en-only">What our clients say about their experience at Elite Smile</p>
+                </div>
+                <div class="swiper testimonialSwiper" data-aos="fade-up">
+                    <div class="swiper-wrapper" id="testimonialsContainer"></div>
+                    <div class="swiper-pagination mt-8 relative"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== REELS ===== -->
+        <section class="section-padding" id="reels" aria-label="فيديوهات قصيرة">
+            <div class="container">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">فيديوهات <span>تعريفية</span></h2>
+                    <h2 class="section-title en-only">Featured <span>Reels</span></h2>
+                    <p class="section-sub mx-auto mt-4 ar-only">تعرف على عيادتنا من خلال فيديوهات قصيرة وحصرية</p>
+                    <p class="section-sub mx-auto mt-4 en-only">Get to know our clinic through exclusive short videos</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="reelsContainer"></div>
+            </div>
+        </section>
+
+        <!-- ===== APPOINTMENT ===== -->
+        <section class="section-padding bg-gold-soft" id="appointment" aria-label="حجز موعد">
+            <div class="container">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    <div data-aos="fade-up">
+                        <h2 class="section-title ar-only">احجز <span>موعدك</span> الآن</h2>
+                        <h2 class="section-title en-only">Book Your <span>Appointment</span> Now</h2>
+                        <p class="text-muted text-lg mt-4 ar-only">تواصل معنا اليوم واحصل على ابتسامة أحلامك في بيئة فاخرة ورعاية استثنائية</p>
+                        <p class="text-muted text-lg mt-4 en-only">Contact us today and get your dream smile in a luxurious environment with exceptional care</p>
+                        <div class="mt-8 flex flex-col gap-3 text-muted">
+                            <div class="flex items-center gap-3"><i class="fas fa-phone text-gold"></i> <span id="clinicPhone">+966 50 000 0000</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-envelope text-gold"></i> <span id="clinicEmail">info@elitesmile.sa</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-gold"></i> <span id="clinicAddress" class="ar-only">الرياض - حي العليا</span><span id="clinicAddressEn" class="en-only">Riyadh - Al Olaya</span></div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100" class="appointment-form">
+                        <form id="appointmentForm" novalidate>
+                            <div class="input-group">
+                                <label class="ar-only">الاسم الكامل</label>
+                                <label class="en-only">Full Name</label>
+                                <input type="text" id="appName" placeholder="أدخل اسمك" required class="ar-only" />
+                                <input type="text" id="appNameEn" placeholder="Your full name" required class="en-only" />
+                            </div>
+                            <div class="input-group">
+                                <label class="ar-only">رقم الهاتف</label>
+                                <label class="en-only">Phone Number</label>
+                                <input type="tel" id="appPhone" placeholder="05xxxxxxxx" required />
+                            </div>
+                            <div class="input-group">
+                                <label class="ar-only">اختر الطبيب</label>
+                                <label class="en-only">Select Doctor</label>
+                                <div class="doctor-select-grid" id="doctorSelectGrid"></div>
+                            </div>
+                            <div class="input-group">
+                                <label class="ar-only">الخدمة المطلوبة</label>
+                                <label class="en-only">Service Required</label>
+                                <select id="appService">
+                                    <option value="" class="ar-only">اختر الخدمة</option>
+                                    <option value="ابتسامة هوليود" class="ar-only">ابتسامة هوليود</option>
+                                    <option value="زراعة الأسنان" class="ar-only">زراعة الأسنان</option>
+                                    <option value="تبييض الأسنان" class="ar-only">تبييض الأسنان</option>
+                                    <option value="تقويم الأسنان" class="ar-only">تقويم الأسنان</option>
+                                    <option value="عدسات الأسنان" class="ar-only">عدسات الأسنان</option>
+                                    <option value="" class="en-only">Select service</option>
+                                    <option value="Hollywood Smile" class="en-only">Hollywood Smile</option>
+                                    <option value="Dental Implants" class="en-only">Dental Implants</option>
+                                    <option value="Teeth Whitening" class="en-only">Teeth Whitening</option>
+                                    <option value="Orthodontics" class="en-only">Orthodontics</option>
+                                    <option value="Veneers" class="en-only">Veneers</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="ar-only">التاريخ المفضل</label>
+                                <label class="en-only">Preferred Date</label>
+                                <input type="date" id="appDate" />
+                            </div>
+                            <button type="submit" class="btn-gold w-full justify-center ar-only">
+                                <i class="fas fa-paper-plane"></i> إرسال الطلب
+                            </button>
+                            <button type="submit" class="btn-gold w-full justify-center en-only">
+                                <i class="fas fa-paper-plane"></i> Send Request
+                            </button>
+                            <p class="text-center text-xs text-muted-2 mt-4 ar-only">سيتم التواصل معك خلال 24 ساعة</p>
+                            <p class="text-center text-xs text-muted-2 mt-4 en-only">We will contact you within 24 hours</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="section-padding" id="faq" aria-label="الأسئلة الشائعة">
+            <div class="container max-w-3xl">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">الأسئلة <span>الشائعة</span></h2>
+                    <h2 class="section-title en-only">Frequently <span>Asked Questions</span></h2>
+                </div>
+                <div class="glass-card p-6 md:p-8" data-aos="fade-up" id="faqContainer"></div>
+            </div>
+        </section>
+
+        <!-- ===== GOOGLE MAPS ===== -->
+        <section class="pb-8" aria-label="موقع العيادة">
+            <div class="container">
+                <div class="map-container" data-aos="fade-up">
+                    <iframe
+                    id="clinicMap"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.456789012345!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d48999d%3A0x8f6f8f8f8f8f8f8f!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1700000000000"
+                    width="100%"
+                    height="340"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="موقع العيادة على الخريطة"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============================================================
+FOOTER
+============================================================ -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+            <div class="col-span-2 lg:col-span-1">
+                <a href="#" class="logo">إيليت <span>سمايل</span></a>
+                <p class="mt-4 text-sm leading-relaxed ar-only" id="footerDescAr">عيادة سعودية رائدة في طب الأسنان التجميلي والعلاجي، نقدم خدماتنا بأعلى معايير الجودة والفخامة.</p>
+                <p class="mt-4 text-sm leading-relaxed en-only" id="footerDescEn">A leading Saudi clinic in cosmetic and therapeutic dentistry, offering services with the highest quality and luxury standards.</p>
+                <div class="flex gap-3 mt-6">
+                    <a href="#" class="social-icon" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4 ar-only">روابط سريعة</h4>
+                <h4 class="text-white font-bold text-lg mb-4 en-only">Quick Links</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#services" class="ar-only">الخدمات</a><a href="#services" class="en-only">Services</a></li>
+                    <li><a href="#doctors" class="ar-only">الأطباء</a><a href="#doctors" class="en-only">Doctors</a></li>
+                    <li><a href="#gallery" class="ar-only">معرض النتائج</a><a href="#gallery" class="en-only">Gallery</a></li>
+                    <li><a href="#appointment" class="ar-only">حجز موعد</a><a href="#appointment" class="en-only">Book</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4 ar-only">ساعات العمل</h4>
+                <h4 class="text-white font-bold text-lg mb-4 en-only">Working Hours</h4>
+                <div class="hours-grid text-sm" id="workingHoursContainer">
+                    <span class="day ar-only">السبت - الخميس</span>
+                    <span class="day en-only">Sat - Thu</span>
+                    <span class="time">9:00 - 21:00</span>
+                    <span class="day ar-only">الجمعة</span>
+                    <span class="day en-only">Friday</span>
+                    <span class="time ar-only">مغلق</span>
+                    <span class="time en-only">Closed</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4 ar-only">معلومات الاتصال</h4>
+                <h4 class="text-white font-bold text-lg mb-4 en-only">Contact Info</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><i class="fas fa-phone text-gold ml-2"></i> <span id="footerPhone">+966 50 000 0000</span></li>
+                    <li><i class="fas fa-envelope text-gold ml-2"></i> <span id="footerEmail">info@elitesmile.sa</span></li>
+                    <li><i class="fas fa-map-marker-alt text-gold ml-2"></i> <span id="footerAddress" class="ar-only">الرياض - حي العليا</span><span id="footerAddressEn" class="en-only">Riyadh - Al Olaya</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-12 pt-6 text-center text-sm text-white/30">
+            &copy; 2026 <span class="ar-only">عيادة إيليت سمايل - جميع الحقوق محفوظة</span>
+            <span class="en-only">Elite Smile Clinic - All Rights Reserved</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+SCRIPTS
+============================================================ -->
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js">
+</script>
+<!-- Swiper.js -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+</script>
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+</script>
+
+<!-- ============================================================
+MAIN JAVASCRIPT
+============================================================ -->
+<script>
+    // ============================================================
+    // DATA CONFIGURATION
+    // ============================================================
+
+    // Default clinic data (fallback)
+    const DEFAULT_CLINIC = {
+        name: 'عيادة إيليت سمايل',
+        nameEn: 'Elite Smile Clinic',
+        phone: '966500000000',
+        city: 'الرياض',
+        cityEn: 'Riyadh',
+        country: 'Saudi Arabia',
+        niche: 'Dental Clinics',
+        address: 'الرياض - حي العليا',
+        addressEn: 'Riyadh - Al Olaya',
+        images_count: 4,
+        whatsapp: 'https://wa.me/966500000000'
+    };
+
+    // Default doctors
+    const DEFAULT_DOCTORS = [{
+        id: 1,
+        name: 'د. خالد العنزي',
+        nameEn: 'Dr. Khalid Al-Anzi',
+        specialty: 'استشاري زراعة وتجميل الأسنان',
+        specialtyEn: 'Consultant Implant & Cosmetic Dentistry',
+        years: 15,
+        certs: 'جامعة الملك سعود - زمالة أمريكية',
+        certsEn: 'King Saud University - American Fellowship'
+    }, {
+        id: 2,
+        name: 'د. نورة السديري',
+        nameEn: 'Dr. Noura Al-Sudairi',
+        specialty: 'استشارية تقويم الأسنان',
+        specialtyEn: 'Consultant Orthodontist',
+        years: 12,
+        certs: 'جامعة الرياض - دبلوم تقويم متقدم',
+        certsEn: 'Riyadh University - Advanced Orthodontics Diploma'
+    }, {
+        id: 3,
+        name: 'د. عبدالله الماجد',
+        nameEn: 'Dr. Abdullah Al-Majed',
+        specialty: 'استشاري تبييض وعدسات',
+        specialtyEn: 'Consultant Whitening & Veneers',
+        years: 10,
+        certs: 'جامعة الملك فيصل - تدريب دولي',
+        certsEn: 'King Faisal University - International Training'
+    }];
+
+    // Services data
+    const SERVICES_DATA = [{
+        id: 1,
+        name: 'ابتسامة هوليود',
+        nameEn: 'Hollywood Smile',
+        icon: 'fa-smile',
+        desc: 'ابتسامة مثالية بتصميم رقمي متقدم',
+        descEn: 'Perfect smile with advanced digital design'
+    }, {
+        id: 2,
+        name: 'زراعة الأسنان',
+        nameEn: 'Dental Implants',
+        icon: 'fa-tooth',
+        desc: 'زراعة دائمة بأحدث التقنيات العالمية',
+        descEn: 'Permanent implants with latest global tech'
+    }, {
+        id: 3,
+        name: 'تبييض الأسنان',
+        nameEn: 'Teeth Whitening',
+        icon: 'fa-star',
+        desc: 'تبييض فوري وآمن بنتائج مذهلة',
+        descEn: 'Instant and safe whitening with amazing results'
+    }, {
+        id: 4,
+        name: 'تقويم الأسنان',
+        nameEn: 'Orthodontics',
+        icon: 'fa-ruler',
+        desc: 'تقويم شفاف ومريح لابتسامة مثالية',
+        descEn: 'Clear and comfortable orthodontics'
+    }, {
+        id: 5,
+        name: 'عدسات الأسنان',
+        nameEn: 'Veneers',
+        icon: 'fa-gem',
+        desc: 'عدسات خزفية فاخرة لابتسامة ساحرة',
+        descEn: 'Luxury ceramic veneers for a stunning smile'
+    }];
+
+    // Gallery data — each item = one image containing a before/after comparison
+    const GALLERY_DATA = [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 }
+    ];
+
+    // Reviews data
+    const REVIEWS_DATA = [{
+        id: 1,
+        name: 'سارة الخالد',
+        nameEn: 'Sara Al-Khalid',
+        text: 'تجربة رائعة في عيادة إيليت سمايل، الأطباء محترفون والنتائج تفوق التوقعات. أنصح بشدة!',
+        textEn: 'Amazing experience at Elite Smile, the doctors are professionals and the results exceeded expectations. Highly recommended!',
+        rating: 5
+    }, {
+        id: 2,
+        name: 'محمد العتيبي',
+        nameEn: 'Mohammed Al-Otaibi',
+        text: 'أجريت زراعة أسنان وكانت التجربة سلسة ومريحة. الفريق متعاون والنتيجة رائعة.',
+        textEn: 'I had dental implants and the experience was smooth and comfortable. The team is cooperative and the result is great.',
+        rating: 5
+    }, {
+        id: 3,
+        name: 'نوف الحسين',
+        nameEn: 'Nouf Al-Hussein',
+        text: 'ابتسامة هوليود غيرت حياتي. شكراً لفريق إيليت سمايل على الاحترافية والاهتمام.',
+        textEn: 'Hollywood smile changed my life. Thanks to Elite Smile team for their professionalism and care.',
+        rating: 5
+    }, {
+        id: 4,
+        name: 'فهد الغامدي',
+        nameEn: 'Fahad Al-Ghamdi',
+        text: 'أفضل عيادة أسنان في الرياض بلا منازع. النظافة والترتيب والخدمة ممتازة.',
+        textEn: 'The best dental clinic in Riyadh without a doubt. Cleanliness, organization and service are excellent.',
+        rating: 5
+    }];
+
+    // Reels data
+    const REELS_DATA = [
+        { id: 1, title: 'ابتسامة هوليود', titleEn: 'Hollywood Smile' },
+        { id: 2, title: 'زراعة الأسنان', titleEn: 'Dental Implants' },
+        { id: 3, title: 'تبييض الأسنان', titleEn: 'Teeth Whitening' },
+        { id: 4, title: 'تقويم الأسنان', titleEn: 'Orthodontics' }
+    ];
+
+    // FAQ data
+    const FAQ_DATA = [{
+        q: 'ما هي مدة علاج ابتسامة هوليود؟',
+        qEn: 'How long does Hollywood Smile treatment take?',
+        a: 'تتراوح مدة العلاج بين 3 إلى 5 جلسات حسب حالة كل مريض، مع إمكانية الحصول على نتائج أولية فورية.',
+        aEn: 'The treatment duration ranges from 3 to 5 sessions depending on each patient\'s condition, with immediate preliminary results possible.'
+    }, {
+        q: 'هل زراعة الأسنان مؤلمة؟',
+        qEn: 'Are dental implants painful?',
+        a: 'يتم الإجراء تحت تخدير موضعي كامل، لذلك لا يشعر المريض بأي ألم أثناء الجراحة، وبعدها يوصف مسكن مناسب.',
+        aEn: 'The procedure is performed under complete local anesthesia, so the patient does not feel any pain during surgery, and appropriate painkillers are prescribed afterward.'
+    }, {
+        q: 'كم تستغرق نتائج التبييض؟',
+        qEn: 'How long do whitening results last?',
+        a: 'تستمر نتائج التبييض من سنة إلى 3 سنوات حسب العناية الفموية ونمط الحياة، مع إمكانية إجراء جلسات صيانة.',
+        aEn: 'Whitening results last from 1 to 3 years depending on oral care and lifestyle, with maintenance sessions available.'
+    }, {
+        q: 'هل عدسات الأسنان مناسبة للجميع؟',
+        qEn: 'Are veneers suitable for everyone?',
+        a: 'تُعد عدسات الأسنان خياراً مثالياً لمن يعانون من تصبغات أو تشوهات خفيفة، ويتم تقييم الحالة من قبل الاستشاري.',
+        aEn: 'Veneers are an ideal option for those with staining or mild deformities, and the case is evaluated by the consultant.'
+    }];
+
+    // ============================================================
+    // STATE
+    // ============================================================
+    let currentLang = 'ar';
+    let currentTheme = 'light';
+    let clinicData = null;
+    let selectedDoctorId = null;
+    let allClinics = [];
+    let currentClinicIndex = 0;
+
+    // ============================================================
+    // UTILITY
+    // ============================================================
+    function getText(ar, en) {
+        return currentLang === 'ar' ? ar : en;
+    }
+
+    function renderStars(rating) {
+        let s = '';
+        for (let i = 0; i < 5; i++) s += i < rating ? '★' : '☆';
+        return s;
+    }
+
+    function formatPhoneForWhatsApp(phone) {
+        let p = phone.replace(/\D/g, '');
+        if (p.startsWith('966')) return p;
+        if (p.startsWith('0')) return '966' + p.substring(1);
+        return '966' + p;
+    }
+
+    function getWhatsAppLink(phone, message) {
+        const formatted = formatPhoneForWhatsApp(phone);
+        return 'https://wa.me/' + formatted + '?text=' + encodeURIComponent(message);
+    }
+
+    function showToast(message, isSuccess = true) {
+        const toast = document.getElementById('toast');
+        const msgEl = document.getElementById('toastMessage');
+        msgEl.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toast._timeout);
+        toast._timeout = setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    function showModal(message, confirmCallback) {
+        const overlay = document.getElementById('modalOverlay');
+        const msgEl = document.getElementById('modalMessage');
+        const confirmBtn = document.getElementById('modalConfirmBtn');
+        msgEl.textContent = message;
+        overlay.classList.add('show');
+        confirmBtn.onclick = function() {
+            overlay.classList.remove('show');
+            if (confirmCallback) confirmCallback();
+        };
+    }
+
+    function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('show');
+    }
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // ============================================================
+    // DATA LOADING
+    // ============================================================
+    async function loadClinicData() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const file = params.get('file') || 'data';
+
+        try {
+            const response = await fetch(`/data/${file}.json`);
+            if (!response.ok) throw new Error('File not found');
+            const data = await response.json();
+            allClinics = data;
+
+            if (id !== null) {
+                const index = parseInt(id) - 1;
+                if (index >= 0 && index < allClinics.length) {
+                    currentClinicIndex = index;
+                    clinicData = allClinics[index];
+                } else {
+                    clinicData = allClinics[0];
+                    currentClinicIndex = 0;
+                }
+            } else {
+                clinicData = allClinics[0];
+                currentClinicIndex = 0;
+            }
+
+            clinicData = normalizeClinicData(clinicData);
+            return true;
+        } catch (error) {
+            console.warn('Using default clinic data:', error);
+            clinicData = { ...DEFAULT_CLINIC };
+            allClinics = [clinicData];
+            return false;
+        }
+    }
+
+    function normalizeClinicData(data) {
+        return {
+            name: data.name || DEFAULT_CLINIC.name,
+            nameEn: data.nameEn || data.name || DEFAULT_CLINIC.nameEn,
+            phone: data.phone || DEFAULT_CLINIC.phone,
+            city: data.city || 'الرياض',
+            cityEn: data.cityEn || data.city || 'Riyadh',
+            country: data.country || 'Saudi Arabia',
+            niche: data.niche || 'Dental Clinics',
+            address: data.address || 'الرياض - حي العليا',
+            addressEn: data.addressEn || data.address || 'Riyadh - Al Olaya',
+            images_count: data.images_count || 4,
+            whatsapp: data.whatsapp || `https://wa.me/${data.phone || DEFAULT_CLINIC.phone}`,
+            demo_url: data.demo_url || '',
+            images: data.images || []
+        };
+    }
+
+    // ============================================================
+    // RENDER FUNCTIONS
+    // ============================================================
+
+    function updateHero() {
+        document.getElementById('heroBadgeAr').textContent = `عيادة رائدة في ${clinicData.city}`;
+        document.getElementById('heroBadgeEn').textContent = `Leading Clinic in ${clinicData.cityEn || clinicData.city}`;
+        document.getElementById('heroCityAr').textContent = clinicData.city;
+        document.getElementById('heroCityEn').textContent = clinicData.cityEn || clinicData.city;
+        document.getElementById('heroDescAr').innerHTML =
+            `نقدم أفضل خدمات طب الأسنان التجميلية والعلاجية في <span id="heroCityAr">${clinicData.city}</span> بأحدث التقنيات وبأيدي نخبة من الأطباء المتخصصين.`;
+        document.getElementById('heroDescEn').innerHTML =
+            `We offer the best cosmetic and therapeutic dental services in <span id="heroCityEn">${clinicData.cityEn || clinicData.city}</span> with the latest technologies and a team of specialized doctors.`;
+    }
+
+    function updateContactInfo() {
+        const phone = clinicData.phone.startsWith('966') ? clinicData.phone : '+966 ' + clinicData.phone;
+        document.getElementById('clinicPhone').textContent = phone;
+        document.getElementById('footerPhone').textContent = phone;
+        document.getElementById('clinicEmail').textContent = `info@${clinicData.name.toLowerCase().replace(/\s/g, '')}.sa`;
+        document.getElementById('footerEmail').textContent = `info@${clinicData.name.toLowerCase().replace(/\s/g, '')}.sa`;
+        document.getElementById('clinicAddress').textContent = clinicData.address;
+        document.getElementById('clinicAddressEn').textContent = clinicData.addressEn || clinicData.address;
+        document.getElementById('footerAddress').textContent = clinicData.address;
+        document.getElementById('footerAddressEn').textContent = clinicData.addressEn || clinicData.address;
+        document.getElementById('footerDescAr').textContent =
+            `عيادة سعودية رائدة في طب الأسنان التجميلي والعلاجي في ${clinicData.city}، نقدم خدماتنا بأعلى معايير الجودة والفخامة.`;
+        document.getElementById('footerDescEn').textContent =
+            `A leading Saudi clinic in cosmetic and therapeutic dentistry in ${clinicData.cityEn || clinicData.city}, offering services with the highest quality and luxury standards.`;
+
+        const waLink = clinicData.whatsapp || `https://wa.me/${formatPhoneForWhatsApp(clinicData.phone)}`;
+        document.getElementById('headerWhatsApp').href = waLink;
+        document.getElementById('mobileWhatsApp').href = waLink;
+        document.getElementById('floatingWa').href = waLink;
+        document.getElementById('heroWhatsAppAr').href = waLink;
+        document.getElementById('heroWhatsAppEn').href = waLink;
+
+        const mapFrame = document.getElementById('clinicMap');
+        if (clinicData.address) {
+            const encodedAddr = encodeURIComponent(clinicData.address);
+            mapFrame.src =
+                `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.456789012345!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d48999d%3A0x8f6f8f8f8f8f8f8f!2s${encodedAddr}!5e0!3m2!1sen!2ssa!4v1700000000000`;
+        }
+    }
+
+    function renderServices() {
+        const container = document.getElementById('servicesContainer');
+        container.innerHTML = SERVICES_DATA.map(s => `
+                <div class="glass-card-gold p-6 md:p-8 text-center group" data-aos="fade-up" data-aos-delay="${s.id * 80}">
+                    <div class="service-icon"> <i class="fas ${s.icon}"></i> </div>
+                    <h3 class="text-xl font-bold mt-4">${currentLang === 'ar' ? s.name : s.nameEn}</h3>
+                    <p class="text-muted text-sm mt-2 leading-relaxed">${currentLang === 'ar' ? s.desc : s.descEn}</p>
+                </div>
+            `).join('');
+    }
+
+    function renderDoctors() {
+        const container = document.getElementById('doctorsContainer');
+        const doctors = clinicData.doctors || DEFAULT_DOCTORS;
+        container.innerHTML = doctors.map((d, idx) => `
+                <div class="doctor-card" data-doctor-id="${d.id || idx + 1}" data-aos="fade-up" data-aos-delay="${(idx + 1) * 80}" onclick="selectDoctor(${d.id || idx + 1})">
+                    <div class="img-wrap" style="background-image: url('assets/images/doctors/${d.id || idx + 1}.jpg'); background-size: cover; background-position: center top;">
+    <span class="badge-cert"><i class="fas fa-certificate"></i> معتمد</span>
+</div>
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold">${currentLang === 'ar' ? d.name : d.nameEn}</h3>
+                        <p class="text-gold font-semibold text-sm">${currentLang === 'ar' ? d.specialty : d.specialtyEn}</p>
+                        <div class="flex items-center gap-3 mt-3 text-sm text-muted">
+                            <span><i class="fas fa-calendar-alt text-gold ml-1"></i> ${d.years || 10} ${currentLang === 'ar' ? 'سنوات خبرة' : 'years'}</span>
+                            <span><i class="fas fa-graduation-cap text-gold ml-1"></i> ${currentLang === 'ar' ? (d.certs || 'شهادة معتمدة') : (d.certsEn || 'Certified')}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+        renderDoctorOptions(doctors);
+    }
+
+    function renderDoctorOptions(doctors) {
+        const grid = document.getElementById('doctorSelectGrid');
+        const docList = doctors || clinicData.doctors || DEFAULT_DOCTORS;
+        grid.innerHTML = docList.map((d, idx) => `
+                <div class="doctor-option ${selectedDoctorId === (d.id || idx + 1) ? 'active' : ''}" 
+                     data-doctor-id="${d.id || idx + 1}"
+                     onclick="selectDoctorOption(${d.id || idx + 1})">
+                    ${currentLang === 'ar' ? d.name : d.nameEn}
+                </div>
+            `).join('');
+        if (!selectedDoctorId && docList.length > 0) {
+            selectedDoctorId = docList[0].id || 1;
+            document.querySelectorAll('.doctor-option').forEach(el => {
+                el.classList.toggle('active', parseInt(el.dataset.doctorId) === selectedDoctorId);
+            });
+        }
+    }
+
+    function selectDoctor(id) {
+        selectedDoctorId = id;
+        document.querySelectorAll('.doctor-card').forEach(el => {
+            el.classList.toggle('selected', parseInt(el.dataset.doctorId) === id);
+        });
+        document.querySelectorAll('.doctor-option').forEach(el => {
+            el.classList.toggle('active', parseInt(el.dataset.doctorId) === id);
+        });
+        document.getElementById('appointment').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function selectDoctorOption(id) {
+        selectedDoctorId = id;
+        document.querySelectorAll('.doctor-option').forEach(el => {
+            el.classList.toggle('active', parseInt(el.dataset.doctorId) === id);
+        });
+        document.querySelectorAll('.doctor-card').forEach(el => {
+            el.classList.toggle('selected', parseInt(el.dataset.doctorId) === id);
+        });
+    }
+
+    window.selectDoctor = selectDoctor;
+    window.selectDoctorOption = selectDoctorOption;
+
+    function renderGallery() {
+        const container = document.getElementById('galleryContainer');
+        container.innerHTML = GALLERY_DATA.map(g => `
+                <div class="swiper-slide">
+                    <div class="ba-slide" style="background-image: url('assets/images/gallery/${g.id}.jpg'); background-size: cover; background-position: center;">
+    <span class="label">${currentLang === 'ar' ? 'قبل / بعد' : 'Before / After'}</span>
+</div>
+                </div>
+            `).join('');
+        if (window.gallerySwiper) window.gallerySwiper.update();
+    }
+
+    function renderTestimonials() {
+        const container = document.getElementById('testimonialsContainer');
+        container.innerHTML = REVIEWS_DATA.map(r => `
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                        <div class="stars">${renderStars(r.rating)}</div>
+                        <p class="text-muted text-sm leading-relaxed my-3">"${currentLang === 'ar' ? r.text : r.textEn}"</p>
+                        <div class="flex items-center gap-3 mt-4">
+                            <div class="w-10 h-10 rounded-full bg-gold-soft flex items-center justify-center text-gold font-bold">${(currentLang === 'ar' ? r.name : r.nameEn).charAt(0)}</div>
+                            <div>
+                                <div class="font-bold text-sm">${currentLang === 'ar' ? r.name : r.nameEn}</div>
+                                <div class="text-xs text-muted-2">${currentLang === 'ar' ? 'عميل مميز' : 'Premium Client'}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        if (window.testimonialSwiper) window.testimonialSwiper.update();
+    }
+
+    function renderReels() {
+        const container = document.getElementById('reelsContainer');
+        container.innerHTML = REELS_DATA.map((r, idx) => `
+                <div class="reel-card" style="background: linear-gradient(145deg, #1a1a2e, #2d2d44); position: relative; overflow: hidden;">
+    <video muted playsinline loop preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+        <source src="assets/images/reels/${r.id || idx + 1}.mp4" type="video/mp4">
+    </video>
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.2);"></div>
+    <div class="play-btn"><i class="fas fa-play" style="margin-right:4px;"></i></div>
+    <div class="reel-title">${currentLang === 'ar' ? r.title : r.titleEn}</div>
+</div>
+            `).join('');
+    }
+
+    function renderFAQ() {
+        const container = document.getElementById('faqContainer');
+        container.innerHTML = FAQ_DATA.map((f, i) => `
+                <div class="faq-item ${i === 0 ? 'open' : ''}" data-index="${i}">
+                    <div class="faq-question" onclick="toggleFaq(${i})">
+                        <span>${currentLang === 'ar' ? f.q : f.qEn}</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">${currentLang === 'ar' ? f.a : f.aEn}</div>
+                </div>
+            `).join('');
+    }
+
+    function toggleFaq(index) {
+        const items = document.querySelectorAll('.faq-item');
+        const target = items[index];
+        if (!target) return;
+        const isOpen = target.classList.contains('open');
+        items.forEach(el => el.classList.remove('open'));
+        if (!isOpen) target.classList.add('open');
+    }
+    window.toggleFaq = toggleFaq;
+
+    function renderAll() {
+        updateHero();
+        updateContactInfo();
+        renderServices();
+        renderDoctors();
+        renderGallery();
+        renderTestimonials();
+        renderReels();
+        renderFAQ();
+
+        document.body.classList.remove('lang-ar', 'lang-en');
+        document.body.classList.add('lang-' + currentLang);
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = currentLang;
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        AOS.refresh();
+        setTimeout(initSwipers, 200);
+    }
+
+    // ============================================================
+    // SWIPER INIT
+    // ============================================================
+    function initSwipers() {
+        if (window.gallerySwiper) {
+            window.gallerySwiper.destroy(true, true);
+            window.gallerySwiper = null;
+        }
+        if (window.testimonialSwiper) {
+            window.testimonialSwiper.destroy(true, true);
+            window.testimonialSwiper = null;
+        }
+
+        window.gallerySwiper = new Swiper('.gallerySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: '.gallerySwiper .swiper-pagination', clickable: true },
+            navigation: { nextEl: '.gallerySwiper .swiper-button-next', prevEl: '.gallerySwiper .swiper-button-prev' },
+            breakpoints: { 640: { slidesPerView: 2, spaceBetween: 24 }, 1024: { slidesPerView: 3, spaceBetween: 28 } }
+        });
+
+        window.testimonialSwiper = new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 24,
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.testimonialSwiper .swiper-pagination', clickable: true },
+            breakpoints: { 768: { slidesPerView: 2, spaceBetween: 24 }, 1024: { slidesPerView: 3, spaceBetween: 28 } }
+        });
+    }
+
+    // ============================================================
+    // APPOINTMENT FORM
+    // ============================================================
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = currentLang === 'ar' ? document.getElementById('appName').value : document.getElementById('appNameEn')
+            .value;
+        const phone = document.getElementById('appPhone').value;
+        const service = document.getElementById('appService').value;
+        const date = document.getElementById('appDate').value;
+        const doctors = clinicData.doctors || DEFAULT_DOCTORS;
+        const selectedDoc = doctors.find(d => (d.id || 0) === selectedDoctorId) || doctors[0];
+
+        if (!name || !phone) {
+            showToast(currentLang === 'ar' ? 'الرجاء إدخال الاسم ورقم الهاتف' : 'Please enter your name and phone number',
+            false);
+            return;
+        }
+
+        if (!selectedDoc) {
+            showToast(currentLang === 'ar' ? 'الرجاء اختيار طبيب' : 'Please select a doctor', false);
+            return;
+        }
+
+        const docName = currentLang === 'ar' ? selectedDoc.name : selectedDoc.nameEn;
+        const clinicName = currentLang === 'ar' ? clinicData.name : clinicData.nameEn;
+        const serviceName = service || (currentLang === 'ar' ? 'غير محدد' : 'Not specified');
+        const dateStr = date || (currentLang === 'ar' ? 'غير محدد' : 'Not specified');
+
+        const messageAr =
+            `مرحباً، أرغب في حجز موعد في ${clinicName}%0A%0A` +
+            `👤 الاسم: ${name}%0A` +
+            `📱 الهاتف: ${phone}%0A` +
+            `👨‍⚕️ الطبيب: ${docName}%0A` +
+            `🦷 الخدمة: ${serviceName}%0A` +
+            `📅 التاريخ: ${dateStr}%0A%0A` +
+            `أتمنى تأكيد الموعد في أقرب وقت. شكراً!`;
+
+        const messageEn =
+            `Hello, I would like to book an appointment at ${clinicName}%0A%0A` +
+            `👤 Name: ${name}%0A` +
+            `📱 Phone: ${phone}%0A` +
+            `👨‍⚕️ Doctor: ${docName}%0A` +
+            `🦷 Service: ${serviceName}%0A` +
+            `📅 Date: ${dateStr}%0A%0A` +
+            `Please confirm the appointment as soon as possible. Thank you!`;
+
+        const message = currentLang === 'ar' ? messageAr : messageEn;
+
+        const confirmMsg = currentLang === 'ar' ?
+            `سيتم إرسال طلب حجز موعد مع د. ${docName} عبر واتساب. هل أنت متأكد؟` :
+            `A booking request with Dr. ${docName} will be sent via WhatsApp. Are you sure?`;
+
+        showModal(confirmMsg, function() {
+            const waLink = getWhatsAppLink(clinicData.phone, message);
+            window.open(waLink, '_blank');
+            showToast(currentLang === 'ar' ? 'تم فتح واتساب لإرسال الطلب' : 'WhatsApp opened to send request');
+            document.getElementById('appointmentForm').reset();
+            selectedDoctorId = null;
+            document.querySelectorAll('.doctor-option').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.doctor-card').forEach(el => el.classList.remove('selected'));
+        });
+    });
+
+    // ============================================================
+    // LANGUAGE TOGGLE
+    // ============================================================
+    function setLang(lang) {
+        if (lang === currentLang) return;
+        currentLang = lang;
+        document.querySelectorAll('.lang-toggle button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        renderAll();
+        setTimeout(initSwipers, 150);
+        AOS.refresh();
+    }
+
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            setLang(this.dataset.lang);
+        });
+    });
+
+    // ============================================================
+    // THEME TOGGLE
+    // ============================================================
+    function setTheme(theme) {
+        if (theme === currentTheme) return;
+        currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        document.querySelectorAll('.theme-toggle button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === theme);
+        });
+        renderAll();
+        setTimeout(initSwipers, 150);
+        AOS.refresh();
+    }
+
+    document.querySelectorAll('.theme-toggle button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            setTheme(this.dataset.theme);
+        });
+    });
+
+    // ============================================================
+    // MOBILE MENU
+    // ============================================================
+    const menuToggle = document.getElementById('menuToggle');
+    const closeMenuBtn = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        menuToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+        menuToggle.setAttribute('aria-expanded', 'false');
+    }
+    window.closeMobileMenu = closeMobileMenu;
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+    });
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+        a.addEventListener('click', closeMobileMenu);
+    });
+
+    // ============================================================
+    // HEADER SCROLL EFFECT
+    // ============================================================
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        header.classList.toggle('scrolled', currentScroll > 60);
+    });
+
+    // ============================================================
+    // LOADING SCREEN
+    // ============================================================
+    function hideLoading() {
+        const screen = document.getElementById('loading-screen');
+        screen.classList.add('hidden');
+        setTimeout(() => { screen.style.display = 'none'; }, 1000);
+    }
+
+    // ============================================================
+    // GSAP HERO ANIMATIONS
+    // ============================================================
+    function initHeroAnimations() {
+        gsap.from('.hero-title', { duration: 1, y: 60, opacity: 0, ease: 'power3.out', delay: 0.3 });
+        gsap.from('.hero-desc', { duration: 0.8, y: 40, opacity: 0, ease: 'power3.out', delay: 0.5 });
+        gsap.from('.hero .btn-gold, .hero .btn-outline-gold', { duration: 0.6, y: 30, opacity: 0, ease: 'power3.out',
+            delay: 0.7, stagger: 0.1 });
+        gsap.from('.hero-badge', { duration: 0.6, scale: 0.8, opacity: 0, ease: 'back.out(1.7)', delay: 0.2 });
+        gsap.from('.hero-visual-inner', { duration: 1.2, scale: 0.9, opacity: 0, ease: 'power3.out', delay: 0.4 });
+        gsap.from('.hero-visual-inner .floating-shape', {
+            duration: 1.5,
+            scale: 0,
+            opacity: 0,
+            ease: 'back.out(1.7)',
+            delay: 0.6,
+            stagger: 0.15
+        });
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    async function init() {
+        await loadClinicData();
+        renderAll();
+        setTimeout(initSwipers, 300);
+
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 40,
+            easing: 'ease-out-cubic',
+            disable: window.innerWidth < 640 ? true : false
+        });
+
+        setTimeout(initHeroAnimations, 500);
+        setTimeout(hideLoading, 2200);
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => { AOS.refresh(); }, 200);
+        });
+
+        document.querySelectorAll('.theme-toggle button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === currentTheme);
+        });
+        document.querySelectorAll('.lang-toggle button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === currentLang);
+        });
+
+        console.log('✅ Clinic loaded:', clinicData.name);
+        console.log('📁 Data source:', allClinics.length > 0 ? `${allClinics.length} clinics loaded` : 'Default data');
+        console.log('🔗 URL params:', new URLSearchParams(window.location.search).toString());
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+{
+  "citySlug": "dammam",
+  "clinicName": {
+    "ar": "بيرلا دنتال",
+    "en": "Perla Dental"
+  },
+  "cityLabel": {
+    "ar": "الدمام",
+    "en": "Dammam"
+  },
+  "badge": {
+    "ar": "عيادة أسنان موثوقة في الدمام",
+    "en": "Trusted Dental Clinic in Dammam"
+  },
+  "heroDesc": {
+    "ar": "عيادتك المتكاملة لطب الأسنان في الدمام، رعاية دافئة وتقنيات عالمية لابتسامة تدوم.",
+    "en": "Your complete dental care destination in Dammam — warm care and world-class technology for a smile that lasts."
+  },
+  "phone": "+966501112202",
+  "whatsapp": "966501112202",
+  "email": "info@perladental-dammam.sa",
+  "address": {
+    "ar": "الدمام - حي الشاطئ",
+    "en": "Dammam - Al Shatea District"
+  },
+  "lat": 26.4367,
+  "lng": 50.1039,
+  "workingHours": [
+    {
+      "days": {
+        "ar": "السبت - الخميس",
+        "en": "Sat - Thu"
+      },
+      "hours": {
+        "ar": "9:00 ص - 9:00 م",
+        "en": "9:00 AM - 9:00 PM"
+      }
+    },
+    {
+      "days": {
+        "ar": "الجمعة",
+        "en": "Friday"
+      },
+      "hours": {
+        "ar": "مغلق",
+        "en": "Closed"
+      }
+    }
+  ],
+  "social": {
+    "twitter": "",
+    "instagram": "https://instagram.com",
+    "youtube": "",
+    "tiktok": ""
+  },
+  "services": [
+    {
+      "id": 1,
+      "icon": "fa-smile",
+      "name": "ابتسامة هوليود",
+      "nameEn": "Hollywood Smile",
+      "desc": "ابتسامة مثالية بتصميم رقمي متقدم",
+      "descEn": "Perfect smile with advanced digital design"
+    },
+    {
+      "id": 2,
+      "icon": "fa-tooth",
+      "name": "زراعة الأسنان",
+      "nameEn": "Dental Implants",
+      "desc": "زراعة دائمة بأحدث التقنيات العالمية",
+      "descEn": "Permanent implants with the latest global technology"
+    },
+    {
+      "id": 3,
+      "icon": "fa-star",
+      "name": "تبييض الأسنان",
+      "nameEn": "Teeth Whitening",
+      "desc": "تبييض فوري وآمن بنتائج مذهلة",
+      "descEn": "Instant and safe whitening with stunning results"
+    },
+    {
+      "id": 4,
+      "icon": "fa-ruler",
+      "name": "تقويم الأسنان",
+      "nameEn": "Orthodontics",
+      "desc": "تقويم شفاف ومريح لابتسامة مثالية",
+      "descEn": "Clear, comfortable orthodontics for a perfect smile"
+    },
+    {
+      "id": 5,
+      "icon": "fa-gem",
+      "name": "عدسات الأسنان",
+      "nameEn": "Veneers",
+      "desc": "عدسات خزفية فاخرة لابتسامة ساحرة",
+      "descEn": "Luxury ceramic veneers for a stunning smile"
+    },
+    {
+      "id": 6,
+      "icon": "fa-shield-alt",
+      "name": "علاج الجذور",
+      "nameEn": "Root Canal",
+      "desc": "علاج دقيق وخالٍ من الألم لجذور الأسنان",
+      "descEn": "Precise, pain-free root canal treatment"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "name": "د. فيصل القحطاني",
+      "nameEn": "Dr. Faisal Al-Qahtani",
+      "specialty": "استشاري زراعة الأسنان",
+      "specialtyEn": "Consultant Implant Dentistry",
+      "years": 14,
+      "certs": "جامعة الملك فهد - زمالة ألمانية",
+      "certsEn": "KFUPM Health - German Fellowship"
+    },
+    {
+      "id": 2,
+      "name": "د. هند المطيري",
+      "nameEn": "Dr. Hind Al-Mutairi",
+      "specialty": "استشارية تجميل الأسنان",
+      "specialtyEn": "Consultant Cosmetic Dentistry",
+      "years": 11,
+      "certs": "جامعة الدمام - دبلوم تجميل متقدم",
+      "certsEn": "Dammam University - Advanced Cosmetic Diploma"
+    },
+    {
+      "id": 3,
+      "name": "د. ماجد الدوسري",
+      "nameEn": "Dr. Majed Al-Dosari",
+      "specialty": "استشاري علاج الجذور",
+      "specialtyEn": "Consultant Endodontist",
+      "years": 9,
+      "certs": "جامعة الملك سعود - تدريب دولي",
+      "certsEn": "King Saud University - International Training"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 2,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 3,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 4,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 5,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 6,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "منيرة العمري",
+      "nameEn": "Muneera Al-Amri",
+      "rating": 5,
+      "text": "أفضل تجربة أسنان جربتها في الدمام، الطاقم لطيف والدكتورة شرحت كل خطوة.",
+      "textEn": "Best dental experience in Dammam — friendly staff and the doctor explained every step."
+    },
+    {
+      "id": 2,
+      "name": "عبدالعزيز الشهري",
+      "nameEn": "Abdulaziz Al-Shahri",
+      "rating": 5,
+      "text": "علاج جذور بدون أي ألم تقريباً، والمتابعة بعد الجلسة كانت ممتازة.",
+      "textEn": "Root canal with almost no pain at all, and excellent follow-up after the session."
+    },
+    {
+      "id": 3,
+      "name": "ريم الزهراني",
+      "nameEn": "Reem Al-Zahrani",
+      "rating": 5,
+      "text": "عدسات الأسنان غيرت شكل ابتسامتي بالكامل، شكراً بيرلا دنتال.",
+      "textEn": "The veneers completely transformed my smile, thank you Perla Dental."
+    },
+    {
+      "id": 4,
+      "name": "تركي الغامدي",
+      "nameEn": "Turki Al-Ghamdi",
+      "rating": 5,
+      "text": "حجزت موعد عبر واتساب واستلموني بنفس اليوم، تنظيم رائع.",
+      "textEn": "Booked via WhatsApp and was seen the same day — great organization."
+    }
+  ],
+  "reels": [
+    {
+      "id": 1,
+      "title": "ابتسامة هوليود",
+      "titleEn": "Hollywood Smile",
+      "url": ""
+    },
+    {
+      "id": 2,
+      "title": "زراعة الأسنان",
+      "titleEn": "Dental Implants",
+      "url": ""
+    },
+    {
+      "id": 3,
+      "title": "تبييض الأسنان",
+      "titleEn": "Teeth Whitening",
+      "url": ""
+    },
+    {
+      "id": 4,
+      "title": "جولة داخل عيادة الدمام",
+      "titleEn": "Clinic Tour",
+      "url": ""
+    }
+  ],
+  "faq": [
+    {
+      "q": "ما هي مدة علاج ابتسامة هوليود؟",
+      "qEn": "How long does a Hollywood Smile take?",
+      "a": "تتراوح مدة العلاج بين 3 إلى 5 جلسات حسب حالة كل مريض، مع إمكانية الحصول على نتائج أولية فورية.",
+      "aEn": "Treatment ranges from 3 to 5 sessions depending on the case, with immediate preliminary results possible."
+    },
+    {
+      "q": "هل زراعة الأسنان مؤلمة؟",
+      "qEn": "Are dental implants painful?",
+      "a": "يتم الإجراء تحت تخدير موضعي كامل، لذلك لا يشعر المريض بأي ألم أثناء الجراحة، ويوصف مسكن مناسب بعدها.",
+      "aEn": "The procedure is done under full local anesthesia, so there is no pain during surgery, with painkillers prescribed after."
+    },
+    {
+      "q": "كم تستمر نتائج التبييض؟",
+      "qEn": "How long do whitening results last?",
+      "a": "تستمر نتائج التبييض من سنة إلى 3 سنوات حسب العناية الفموية ونمط الحياة، مع إمكانية جلسات صيانة.",
+      "aEn": "Whitening lasts 1 to 3 years depending on oral care and lifestyle, with optional maintenance sessions."
+    },
+    {
+      "q": "هل تقبلون التأمين الطبي؟",
+      "qEn": "Do you accept medical insurance?",
+      "a": "نعم، نتعامل مع أغلب شركات التأمين الطبي الكبرى في المملكة، تواصل معنا للتأكد من شركتك.",
+      "aEn": "Yes, we work with most major medical insurance providers in the Kingdom — contact us to confirm your provider."
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "citySlug": "jeddah",
+  "clinicName": {
+    "ar": "سمايل بوينت",
+    "en": "Smile Point"
+  },
+  "cityLabel": {
+    "ar": "جدة",
+    "en": "Jeddah"
+  },
+  "badge": {
+    "ar": "عيادة عصرية على كورنيش جدة",
+    "en": "Modern Clinic on Jeddah Corniche"
+  },
+  "heroDesc": {
+    "ar": "طب أسنان عصري بإطلالة على كورنيش جدة، نهتم بابتسامتك من أول استشارة حتى النتيجة النهائية.",
+    "en": "Modern dentistry overlooking Jeddah Corniche — we care for your smile from first consultation to final result."
+  },
+  "phone": "+966501112203",
+  "whatsapp": "966501112203",
+  "email": "info@smilepoint-jeddah.sa",
+  "address": {
+    "ar": "جدة - كورنيش جدة",
+    "en": "Jeddah - Jeddah Corniche"
+  },
+  "lat": 21.5433,
+  "lng": 39.1728,
+  "workingHours": [
+    {
+      "days": {
+        "ar": "السبت - الخميس",
+        "en": "Sat - Thu"
+      },
+      "hours": {
+        "ar": "9:00 ص - 9:00 م",
+        "en": "9:00 AM - 9:00 PM"
+      }
+    },
+    {
+      "days": {
+        "ar": "الجمعة",
+        "en": "Friday"
+      },
+      "hours": {
+        "ar": "مغلق",
+        "en": "Closed"
+      }
+    }
+  ],
+  "social": {
+    "twitter": "https://twitter.com",
+    "instagram": "https://instagram.com",
+    "youtube": "https://youtube.com",
+    "tiktok": "https://tiktok.com"
+  },
+  "services": [
+    {
+      "id": 1,
+      "icon": "fa-smile",
+      "name": "ابتسامة هوليود",
+      "nameEn": "Hollywood Smile",
+      "desc": "ابتسامة مثالية بتصميم رقمي متقدم",
+      "descEn": "Perfect smile with advanced digital design"
+    },
+    {
+      "id": 2,
+      "icon": "fa-tooth",
+      "name": "زراعة الأسنان",
+      "nameEn": "Dental Implants",
+      "desc": "زراعة دائمة بأحدث التقنيات العالمية",
+      "descEn": "Permanent implants with the latest global technology"
+    },
+    {
+      "id": 3,
+      "icon": "fa-star",
+      "name": "تبييض الأسنان",
+      "nameEn": "Teeth Whitening",
+      "desc": "تبييض فوري وآمن بنتائج مذهلة",
+      "descEn": "Instant and safe whitening with stunning results"
+    },
+    {
+      "id": 4,
+      "icon": "fa-ruler",
+      "name": "تقويم الأسنان",
+      "nameEn": "Orthodontics",
+      "desc": "تقويم شفاف ومريح لابتسامة مثالية",
+      "descEn": "Clear, comfortable orthodontics for a perfect smile"
+    },
+    {
+      "id": 5,
+      "icon": "fa-gem",
+      "name": "عدسات الأسنان",
+      "nameEn": "Veneers",
+      "desc": "عدسات خزفية فاخرة لابتسامة ساحرة",
+      "descEn": "Luxury ceramic veneers for a stunning smile"
+    },
+    {
+      "id": 6,
+      "icon": "fa-shield-alt",
+      "name": "علاج الجذور",
+      "nameEn": "Root Canal",
+      "desc": "علاج دقيق وخالٍ من الألم لجذور الأسنان",
+      "descEn": "Precise, pain-free root canal treatment"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "name": "د. سلطان الحربي",
+      "nameEn": "Dr. Sultan Al-Harbi",
+      "specialty": "استشاري تجميل الابتسامة",
+      "specialtyEn": "Consultant Smile Design",
+      "years": 16,
+      "certs": "جامعة الملك عبدالعزيز - زمالة بريطانية",
+      "certsEn": "KAU - British Fellowship"
+    },
+    {
+      "id": 2,
+      "name": "د. لمى باعشن",
+      "nameEn": "Dr. Lama Baeshen",
+      "specialty": "استشارية تقويم الأسنان",
+      "specialtyEn": "Consultant Orthodontist",
+      "years": 13,
+      "certs": "جامعة الملك عبدالعزيز - دبلوم تقويم",
+      "certsEn": "KAU - Orthodontics Diploma"
+    },
+    {
+      "id": 3,
+      "name": "د. باسل قاروت",
+      "nameEn": "Dr. Basel Garout",
+      "specialty": "استشاري زراعة الأسنان",
+      "specialtyEn": "Consultant Implant Dentistry",
+      "years": 12,
+      "certs": "جامعة أم القرى - تدريب دولي",
+      "certsEn": "Umm Al-Qura University - International Training"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 2,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 3,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 4,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 5,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 6,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "دانة السلمي",
+      "nameEn": "Dana Al-Sulami",
+      "rating": 5,
+      "text": "العيادة راقية جداً والدكتور شرح لي كل خيارات العلاج بصبر.",
+      "textEn": "Very upscale clinic and the doctor patiently explained all treatment options."
+    },
+    {
+      "id": 2,
+      "name": "يزيد باوزير",
+      "nameEn": "Yazeed Bawazir",
+      "rating": 5,
+      "text": "نتيجة التبييض فاقت توقعاتي، أنصح بها لكل من يريد ابتسامة مشرقة.",
+      "textEn": "The whitening result exceeded my expectations, highly recommend it."
+    },
+    {
+      "id": 3,
+      "name": "جود الزهراني",
+      "nameEn": "Joud Al-Zahrani",
+      "rating": 5,
+      "text": "تقويم الأسنان الشفاف كان مريح جداً ولا أحد لاحظ إني ألبسه.",
+      "textEn": "The clear orthodontics were very comfortable, no one even noticed I had them."
+    },
+    {
+      "id": 4,
+      "name": "عمر فقيه",
+      "nameEn": "Omar Fageeh",
+      "rating": 5,
+      "text": "خدمة سريعة وموقع مميز على الكورنيش، أنصح فيها.",
+      "textEn": "Fast service and a great location on the Corniche, highly recommended."
+    }
+  ],
+  "reels": [
+    {
+      "id": 1,
+      "title": "ابتسامة هوليود",
+      "titleEn": "Hollywood Smile",
+      "url": ""
+    },
+    {
+      "id": 2,
+      "title": "زراعة الأسنان",
+      "titleEn": "Dental Implants",
+      "url": ""
+    },
+    {
+      "id": 3,
+      "title": "تبييض الأسنان",
+      "titleEn": "Teeth Whitening",
+      "url": ""
+    },
+    {
+      "id": 4,
+      "title": "جولة داخل عيادة جدة",
+      "titleEn": "Clinic Tour",
+      "url": ""
+    }
+  ],
+  "faq": [
+    {
+      "q": "ما هي مدة علاج ابتسامة هوليود؟",
+      "qEn": "How long does a Hollywood Smile take?",
+      "a": "تتراوح مدة العلاج بين 3 إلى 5 جلسات حسب حالة كل مريض، مع إمكانية الحصول على نتائج أولية فورية.",
+      "aEn": "Treatment ranges from 3 to 5 sessions depending on the case, with immediate preliminary results possible."
+    },
+    {
+      "q": "هل زراعة الأسنان مؤلمة؟",
+      "qEn": "Are dental implants painful?",
+      "a": "يتم الإجراء تحت تخدير موضعي كامل، لذلك لا يشعر المريض بأي ألم أثناء الجراحة، ويوصف مسكن مناسب بعدها.",
+      "aEn": "The procedure is done under full local anesthesia, so there is no pain during surgery, with painkillers prescribed after."
+    },
+    {
+      "q": "كم تستمر نتائج التبييض؟",
+      "qEn": "How long do whitening results last?",
+      "a": "تستمر نتائج التبييض من سنة إلى 3 سنوات حسب العناية الفموية ونمط الحياة، مع إمكانية جلسات صيانة.",
+      "aEn": "Whitening lasts 1 to 3 years depending on oral care and lifestyle, with optional maintenance sessions."
+    },
+    {
+      "q": "هل تقبلون التأمين الطبي؟",
+      "qEn": "Do you accept medical insurance?",
+      "a": "نعم، نتعامل مع أغلب شركات التأمين الطبي الكبرى في المملكة، تواصل معنا للتأكد من شركتك.",
+      "aEn": "Yes, we work with most major medical insurance providers in the Kingdom — contact us to confirm your provider."
+    }
+  ]
+}

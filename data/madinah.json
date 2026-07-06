@@ -1,0 +1,262 @@
+{
+  "citySlug": "madinah",
+  "clinicName": {
+    "ar": "نور المدينة",
+    "en": "Noor Al-Madinah"
+  },
+  "cityLabel": {
+    "ar": "المدينة المنورة",
+    "en": "Madinah"
+  },
+  "badge": {
+    "ar": "رعاية أسنان قريبة من الحرم النبوي",
+    "en": "Dental Care Near the Prophet's Mosque"
+  },
+  "heroDesc": {
+    "ar": "عيادة أسنان عائلية في المدينة المنورة، نستقبل الزوار والمقيمين بأعلى مستويات الرعاية والراحة.",
+    "en": "A family dental clinic in Madinah, welcoming visitors and residents with the highest levels of care and comfort."
+  },
+  "phone": "+966501112205",
+  "whatsapp": "966501112205",
+  "email": "info@noormadinah.sa",
+  "address": {
+    "ar": "المدينة المنورة - طريق قباء",
+    "en": "Madinah - Quba Road"
+  },
+  "lat": 24.4672,
+  "lng": 39.6024,
+  "workingHours": [
+    {
+      "days": {
+        "ar": "السبت - الخميس",
+        "en": "Sat - Thu"
+      },
+      "hours": {
+        "ar": "9:00 ص - 9:00 م",
+        "en": "9:00 AM - 9:00 PM"
+      }
+    },
+    {
+      "days": {
+        "ar": "الجمعة",
+        "en": "Friday"
+      },
+      "hours": {
+        "ar": "مغلق",
+        "en": "Closed"
+      }
+    }
+  ],
+  "social": {
+    "twitter": "",
+    "instagram": "https://instagram.com",
+    "youtube": "",
+    "tiktok": "https://tiktok.com"
+  },
+  "services": [
+    {
+      "id": 1,
+      "icon": "fa-smile",
+      "name": "ابتسامة هوليود",
+      "nameEn": "Hollywood Smile",
+      "desc": "ابتسامة مثالية بتصميم رقمي متقدم",
+      "descEn": "Perfect smile with advanced digital design"
+    },
+    {
+      "id": 2,
+      "icon": "fa-tooth",
+      "name": "زراعة الأسنان",
+      "nameEn": "Dental Implants",
+      "desc": "زراعة دائمة بأحدث التقنيات العالمية",
+      "descEn": "Permanent implants with the latest global technology"
+    },
+    {
+      "id": 3,
+      "icon": "fa-star",
+      "name": "تبييض الأسنان",
+      "nameEn": "Teeth Whitening",
+      "desc": "تبييض فوري وآمن بنتائج مذهلة",
+      "descEn": "Instant and safe whitening with stunning results"
+    },
+    {
+      "id": 4,
+      "icon": "fa-ruler",
+      "name": "تقويم الأسنان",
+      "nameEn": "Orthodontics",
+      "desc": "تقويم شفاف ومريح لابتسامة مثالية",
+      "descEn": "Clear, comfortable orthodontics for a perfect smile"
+    },
+    {
+      "id": 5,
+      "icon": "fa-gem",
+      "name": "عدسات الأسنان",
+      "nameEn": "Veneers",
+      "desc": "عدسات خزفية فاخرة لابتسامة ساحرة",
+      "descEn": "Luxury ceramic veneers for a stunning smile"
+    },
+    {
+      "id": 6,
+      "icon": "fa-shield-alt",
+      "name": "علاج الجذور",
+      "nameEn": "Root Canal",
+      "desc": "علاج دقيق وخالٍ من الألم لجذور الأسنان",
+      "descEn": "Precise, pain-free root canal treatment"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "name": "د. أحمد بخاري",
+      "nameEn": "Dr. Ahmad Bukhari",
+      "specialty": "استشاري طب أسنان الأسرة",
+      "specialtyEn": "Consultant Family Dentistry",
+      "years": 18,
+      "certs": "الجامعة الإسلامية - زمالة مصرية",
+      "certsEn": "Islamic University - Egyptian Fellowship"
+    },
+    {
+      "id": 2,
+      "name": "د. أروى الأنصاري",
+      "nameEn": "Dr. Arwa Al-Ansari",
+      "specialty": "استشارية تجميل الأسنان",
+      "specialtyEn": "Consultant Cosmetic Dentistry",
+      "years": 11,
+      "certs": "جامعة طيبة - دبلوم تجميلي متقدم",
+      "certsEn": "Taibah University - Advanced Cosmetic Diploma"
+    },
+    {
+      "id": 3,
+      "name": "د. سامي الجهني",
+      "nameEn": "Dr. Sami Al-Juhani",
+      "specialty": "استشاري زراعة الأسنان",
+      "specialtyEn": "Consultant Implant Dentistry",
+      "years": 14,
+      "certs": "جامعة طيبة - تدريب دولي",
+      "certsEn": "Taibah University - International Training"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 2,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 3,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 4,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    },
+    {
+      "id": 5,
+      "type": "before",
+      "label": "قبل",
+      "labelEn": "Before"
+    },
+    {
+      "id": 6,
+      "type": "after",
+      "label": "بعد",
+      "labelEn": "After"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "خلود الحربي",
+      "nameEn": "Kholoud Al-Harbi",
+      "rating": 5,
+      "text": "عيادة قريبة من الحرم وسهلت علينا كثير كزوار، شكراً لهم.",
+      "textEn": "The clinic is close to the Haram which made things much easier for us as visitors, thank you."
+    },
+    {
+      "id": 2,
+      "name": "عبدالرحمن باجابر",
+      "nameEn": "Abdulrahman Bajaber",
+      "rating": 5,
+      "text": "تعاملهم راقي جداً وأسعارهم مناسبة مقارنة بجودة الخدمة.",
+      "textEn": "Very respectful service and reasonable prices for the quality provided."
+    },
+    {
+      "id": 3,
+      "name": "منى الرشيدي",
+      "nameEn": "Mona Al-Rashidi",
+      "rating": 5,
+      "text": "علاج ابني عندهم كان تجربة مريحة جداً بدون خوف.",
+      "textEn": "My son's treatment there was a very comfortable, fear-free experience."
+    },
+    {
+      "id": 4,
+      "name": "ياسر العمري",
+      "nameEn": "Yasser Al-Amri",
+      "rating": 5,
+      "text": "حجزت الموعد من واتساب بدقيقتين واستقبلوني بأدق مواعيدي.",
+      "textEn": "Booked my appointment via WhatsApp in two minutes and was seen right on time."
+    }
+  ],
+  "reels": [
+    {
+      "id": 1,
+      "title": "ابتسامة هوليود",
+      "titleEn": "Hollywood Smile",
+      "url": ""
+    },
+    {
+      "id": 2,
+      "title": "زراعة الأسنان",
+      "titleEn": "Dental Implants",
+      "url": ""
+    },
+    {
+      "id": 3,
+      "title": "تبييض الأسنان",
+      "titleEn": "Teeth Whitening",
+      "url": ""
+    },
+    {
+      "id": 4,
+      "title": "جولة داخل عيادة المدينة المنورة",
+      "titleEn": "Clinic Tour",
+      "url": ""
+    }
+  ],
+  "faq": [
+    {
+      "q": "ما هي مدة علاج ابتسامة هوليود؟",
+      "qEn": "How long does a Hollywood Smile take?",
+      "a": "تتراوح مدة العلاج بين 3 إلى 5 جلسات حسب حالة كل مريض، مع إمكانية الحصول على نتائج أولية فورية.",
+      "aEn": "Treatment ranges from 3 to 5 sessions depending on the case, with immediate preliminary results possible."
+    },
+    {
+      "q": "هل زراعة الأسنان مؤلمة؟",
+      "qEn": "Are dental implants painful?",
+      "a": "يتم الإجراء تحت تخدير موضعي كامل، لذلك لا يشعر المريض بأي ألم أثناء الجراحة، ويوصف مسكن مناسب بعدها.",
+      "aEn": "The procedure is done under full local anesthesia, so there is no pain during surgery, with painkillers prescribed after."
+    },
+    {
+      "q": "كم تستمر نتائج التبييض؟",
+      "qEn": "How long do whitening results last?",
+      "a": "تستمر نتائج التبييض من سنة إلى 3 سنوات حسب العناية الفموية ونمط الحياة، مع إمكانية جلسات صيانة.",
+      "aEn": "Whitening lasts 1 to 3 years depending on oral care and lifestyle, with optional maintenance sessions."
+    },
+    {
+      "q": "هل تقبلون التأمين الطبي؟",
+      "qEn": "Do you accept medical insurance?",
+      "a": "نعم، نتعامل مع أغلب شركات التأمين الطبي الكبرى في المملكة، تواصل معنا للتأكد من شركتك.",
+      "aEn": "Yes, we work with most major medical insurance providers in the Kingdom — contact us to confirm your provider."
+    }
+  ]
+}
