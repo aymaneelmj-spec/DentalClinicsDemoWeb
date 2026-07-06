@@ -2718,7 +2718,7 @@
         });
 
         // ============================================================
-        // DATA LOADING
+        // DATA LOADING — FIXED to use relative path and robust fallback
         // ============================================================
         async function loadClinicData() {
             const params = new URLSearchParams(window.location.search);
@@ -2726,37 +2726,59 @@
             let file = params.get('file') || 'data';
             file = file.replace(/^\/?data\//, '').replace(/\.json$/i, '');
 
-            try {
-                const response = await fetch(`/data/${file}.json`);
-                if (!response.ok) throw new Error('File not found');
-                const data = await response.json();
-                allClinics = data;
+            // Try multiple paths: relative ./data/, absolute /data/, and fallback
+            const pathsToTry = [
+                `./data/${file}.json`,
+                `data/${file}.json`,
+                `/data/${file}.json`,
+                `./${file}.json`,
+                `${file}.json`
+            ];
 
-                if (id !== null) {
-                    const index = parseInt(id) - 1;
-                    if (index >= 0 && index < allClinics.length) {
-                        currentClinicIndex = index;
-                        clinicData = allClinics[index];
-                    } else {
-                        clinicData = allClinics[0];
-                        currentClinicIndex = 0;
+            let loadedData = null;
+            let lastError = null;
+
+            for (const path of pathsToTry) {
+                try {
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        loadedData = await response.json();
+                        console.log(`✅ Data loaded from: ${path}`);
+                        break;
                     }
-                } else {
-                    clinicData = allClinics[0];
-                    currentClinicIndex = 0;
+                } catch (e) {
+                    lastError = e;
+                    // continue to next path
                 }
+            }
 
-                clinicData = normalizeClinicData(clinicData);
-                // Update loading screen with the loaded clinic name
-                updateLoadingScreen(clinicData);
-                return true;
-            } catch (error) {
-                console.warn('Using default clinic data:', error);
+            if (!loadedData) {
+                console.warn('⚠️ Could not load data from any path, using default', lastError);
                 clinicData = { ...DEFAULT_CLINIC };
                 allClinics = [clinicData];
                 updateLoadingScreen(clinicData);
                 return false;
             }
+
+            allClinics = loadedData;
+
+            if (id !== null) {
+                const index = parseInt(id) - 1;
+                if (index >= 0 && index < allClinics.length) {
+                    currentClinicIndex = index;
+                    clinicData = allClinics[index];
+                } else {
+                    clinicData = allClinics[0] || { ...DEFAULT_CLINIC };
+                    currentClinicIndex = 0;
+                }
+            } else {
+                clinicData = allClinics[0] || { ...DEFAULT_CLINIC };
+                currentClinicIndex = 0;
+            }
+
+            clinicData = normalizeClinicData(clinicData);
+            updateLoadingScreen(clinicData);
+            return true;
         }
 
         function extractLeadImages(data) {
@@ -2827,7 +2849,6 @@
             const subEl = document.getElementById('loaderSub');
             if (!logoEl) return;
 
-            // Split name into first part + last word for colored span
             function splitName(n) {
                 const parts = (n || '').trim().split(/\s+/);
                 if (parts.length === 1) return { first: '', last: parts[0] || '' };
@@ -2835,7 +2856,6 @@
             }
             const ar = splitName(data.name);
             const en = splitName(data.nameEn || data.name);
-            // Show Arabic on loading screen by default (matches the initial state)
             logoEl.innerHTML = `${ar.first}<span>${ar.last}</span>`;
             if (subEl) subEl.textContent = (data.nameEn || data.name).toUpperCase();
         }
