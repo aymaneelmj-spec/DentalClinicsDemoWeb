@@ -20,37 +20,39 @@
                    CSS VARIABLES & RESET
                    ============================================================ */
         :root {
-            --gold: #c9a84c;
-            --gold-light: #e8d5a3;
-            --gold-dark: #a8893a;
-            --gold-glow: rgba(201, 168, 76, 0.3);
-            --gold-glow-soft: rgba(201, 168, 76, 0.08);
+            /* Default signature accent = rgb(4,0,255). To rebrand, paste a hex code
+               into the on-site color picker (palette icon) — no code edits needed. */
+            --gold: #0400ff;
+            --gold-light: #5c58ff;
+            --gold-dark: #0000bf;
+            --gold-glow: rgba(4, 0, 255, 0.3);
+            --gold-glow-soft: rgba(4, 0, 255, 0.08);
 
-            --bg-primary: #faf6f0;
-            --bg-secondary: #f0ebe0;
-            --bg-card: rgba(255, 255, 255, 0.6);
-            --bg-card-hover: rgba(255, 255, 255, 0.85);
-            --bg-glass: rgba(255, 255, 255, 0.12);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f5fb;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-card-hover: rgba(255, 255, 255, 1);
+            --bg-glass: rgba(255, 255, 255, 0.2);
 
-            --text-primary: #1a1a2e;
-            --text-secondary: #2d2d44;
-            --text-muted: rgba(26, 26, 46, 0.55);
-            --text-muted-2: rgba(26, 26, 46, 0.35);
+            --text-primary: #0d0d1a;
+            --text-secondary: #23233a;
+            --text-muted: rgba(13, 13, 26, 0.68);
+            --text-muted-2: rgba(13, 13, 26, 0.45);
 
-            --border-light: rgba(255, 255, 255, 0.6);
-            --border-soft: rgba(26, 26, 46, 0.06);
+            --border-light: rgba(13, 13, 26, 0.1);
+            --border-soft: rgba(13, 13, 26, 0.09);
 
-            --shadow-sm: 0 8px 40px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 8px 48px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.06);
-            --shadow-gold: 0 8px 40px rgba(201, 168, 76, 0.25);
+            --shadow-sm: 0 8px 40px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 48px rgba(0, 0, 0, 0.09);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-gold: 0 8px 40px rgba(4, 0, 255, 0.25);
 
-            --header-bg: rgba(250, 246, 240, 0.88);
-            --footer-bg: #1a1a2e;
+            --header-bg: rgba(255, 255, 255, 0.96);
+            --footer-bg: #0d0d1a;
             --footer-text: rgba(255, 255, 255, 0.7);
 
-            --input-bg: rgba(255, 255, 255, 0.5);
-            --input-border: rgba(26, 26, 46, 0.08);
+            --input-bg: #ffffff;
+            --input-border: rgba(13, 13, 26, 0.16);
 
             --whatsapp-shadow: rgba(37, 211, 102, 0.35);
 
@@ -101,16 +103,46 @@
             box-sizing: border-box;
         }
 
+        /* Mobile responsiveness safety net: nothing is ever allowed to force
+           horizontal scroll or overflow the viewport on small screens. */
+        img, video, iframe, svg {
+            max-width: 100%;
+            height: auto;
+        }
+        input, select, textarea, button {
+            max-width: 100%;
+        }
+
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Luxury custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            border-radius: 10px;
+            border: 2px solid var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--bg-secondary);
         }
 
         body {
             font-family: 'Cairo', 'Segoe UI', sans-serif;
             background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
+            color: var(--text-primary);            overflow-x: hidden;
             direction: rtl;
             transition: background 0.4s ease, color 0.4s ease;
             line-height: 1.6;
@@ -315,13 +347,14 @@
             z-index: 999;
             padding: 14px 0;
             transition: all var(--transition);
-            background: transparent;
-        }
-        .header.scrolled {
             background: var(--header-bg);
             backdrop-filter: blur(18px) saturate(1.2);
             -webkit-backdrop-filter: blur(18px) saturate(1.2);
-            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .header.scrolled {
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
             padding: 10px 0;
         }
         .header .logo {
@@ -810,6 +843,54 @@
         }
 
         /* ============================================================
+                   REAL PHOTOS (raw scraped lead images, kept separate
+                   from the curated Before/After showcase above)
+                   ============================================================ */
+        .real-photos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .real-photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+        .real-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .real-photo-card:hover img {
+            transform: scale(1.08);
+        }
+        .real-photo-card .zoom-hint {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.25);
+            color: #fff;
+            font-size: 22px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .real-photo-card:hover .zoom-hint {
+            opacity: 1;
+        }
+        @media (max-width: 1024px) {
+            .real-photos-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .real-photos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        }
+
+        /* ============================================================
                    TESTIMONIALS
                    ============================================================ */
         .testimonial-card {
@@ -906,6 +987,24 @@
             border-radius: 32px;
             padding: 40px 36px;
             box-shadow: var(--shadow-sm);
+        }
+        .payment-note {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold-glow-soft);
+            border: 1px solid var(--gold-glow);
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        .payment-note i {
+            color: var(--gold);
+            font-size: 18px;
+            flex-shrink: 0;
         }
         .appointment-form input,
         .appointment-form select {
@@ -1279,7 +1378,7 @@
             display: none;
             flex-direction: column;
             gap: 12px;
-            width: 220px;
+            width: 250px;
         }
         .color-picker-panel.show {
             display: flex;
@@ -1291,6 +1390,49 @@
             color: var(--text-primary);
             margin-bottom: 2px;
         }
+        .cp-hint {
+            font-size: 11px;
+            color: var(--text-muted-2);
+            line-height: 1.5;
+            margin-top: -8px;
+        }
+        .cp-hex-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            padding: 6px 8px;
+        }
+        .cp-hex-row input[type="text"] {
+            flex: 1;
+            border: none;
+            background: none;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            outline: none;
+            min-width: 0;
+        }
+        .cp-hex-row button {
+            border: none;
+            background: var(--gold);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .cp-hex-row button:hover { transform: scale(1.08); }
+        .cp-hex-row button.copied { background: #2ecc71; }
         .cp-swatches {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -1343,7 +1485,7 @@
         }
         @media (max-width: 640px) {
             .color-picker-btn { width: 48px; height: 48px; bottom: 22px; right: 22px; font-size: 18px; }
-            .color-picker-panel { right: 18px; bottom: 82px; width: 190px; }
+            .color-picker-panel { right: 16px; left: 16px; bottom: 82px; width: auto; }
         }
 
         /* ============================================================
@@ -1825,9 +1967,15 @@
         <div class="cp-title en-only">Site Color</div>
         <div class="cp-swatches" id="cpSwatches"></div>
         <div class="cp-custom-row">
-            <input type="color" id="cpCustomColor" value="#c9a84c" />
+            <input type="color" id="cpCustomColor" value="#0400ff" />
             <span class="ar-only">لون مخصص</span>
             <span class="en-only">Custom</span>
+        </div>
+        <div class="cp-hint ar-only">انسخ/الصق كود اللون (Hex) هنا وسيتغير الموقع فوراً</div>
+        <div class="cp-hint en-only">Copy/paste a hex color code here to re-brand instantly</div>
+        <div class="cp-hex-row">
+            <input type="text" id="cpHexInput" value="#0400FF" spellcheck="false" maxlength="7" placeholder="#0400FF" />
+            <button type="button" id="cpCopyBtn" title="Copy"><i class="fas fa-copy"></i></button>
         </div>
         <button class="cp-reset" id="cpReset">
             <span class="ar-only">إعادة الافتراضي</span>
@@ -1840,7 +1988,10 @@
     ============================================================ -->
     <header class="header" id="header" role="banner">
         <div class="container flex items-center justify-between">
-            <a href="#" class="logo">إيليت <span>سمايل</span></a>
+            <a href="#hero" class="logo">
+                <span class="ar-only" id="logoTextAr">إيليت <span>سمايل</span></span>
+                <span class="en-only" id="logoTextEn">Elite <span>Smile</span></span>
+            </a>
 
             <!-- Desktop Nav -->
             <nav class="hidden lg:flex items-center gap-8" aria-label="القائمة الرئيسية">
@@ -1858,7 +2009,7 @@
 
             <!-- Desktop Actions -->
             <div class="hidden lg:flex items-center gap-3">
-                <a href="#" target="_blank" class="btn-whatsapp btn-sm" id="headerWhatsApp">
+                <a href="#appointment" class="btn-whatsapp btn-sm" id="headerWhatsApp" onclick="goToBooking(event)">
                     <i class="fab fa-whatsapp"></i>
                     <span class="ar-only">واتساب</span>
                     <span class="en-only">WhatsApp</span>
@@ -1910,7 +2061,7 @@
         <a href="#testimonials" class="en-only" onclick="closeMobileMenu()">Reviews</a>
         <a href="#appointment" class="en-only" onclick="closeMobileMenu()">Book</a>
         <div class="flex items-center gap-4 mt-4 flex-wrap justify-center">
-            <a href="#" target="_blank" class="btn-whatsapp btn-sm" id="mobileWhatsApp">
+            <a href="#appointment" class="btn-whatsapp btn-sm" id="mobileWhatsApp" onclick="goToBooking(event)">
                 <i class="fab fa-whatsapp"></i>
                 <span class="ar-only">واتساب</span>
                 <span class="en-only">WhatsApp</span>
@@ -1927,7 +2078,7 @@
     <!-- ============================================================
     FLOATING WHATSAPP
     ============================================================ -->
-    <a href="#" target="_blank" class="floating-wa" id="floatingWa" aria-label="تواصل عبر واتساب">
+    <a href="#appointment" class="floating-wa" id="floatingWa" aria-label="تواصل عبر واتساب" onclick="goToBooking(event)">
         <span class="pulse"></span>
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -1969,10 +2120,10 @@
                             <a href="#appointment" class="btn-gold en-only">
                                 <i class="fas fa-calendar-check"></i> Book Appointment
                             </a>
-                            <a href="#" target="_blank" class="btn-outline-gold ar-only" id="heroWhatsAppAr">
+                            <a href="#appointment" class="btn-outline-gold ar-only" id="heroWhatsAppAr" onclick="goToBooking(event)">
                                 <i class="fab fa-whatsapp"></i> تواصل واتساب
                             </a>
-                            <a href="#" target="_blank" class="btn-outline-gold en-only" id="heroWhatsAppEn">
+                            <a href="#appointment" class="btn-outline-gold en-only" id="heroWhatsAppEn" onclick="goToBooking(event)">
                                 <i class="fab fa-whatsapp"></i> WhatsApp
                             </a>
                         </div>
@@ -2041,6 +2192,19 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ===== REAL PHOTOS (from Google Maps lead data) ===== -->
+        <section class="section-padding bg-gold-soft" id="realPhotos" aria-label="صور حقيقية" style="display:none;">
+            <div class="container">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title ar-only">صور <span>حقيقية</span> من موقعنا</h2>
+                    <h2 class="section-title en-only">Real <span>Photos</span> of Our Location</h2>
+                    <p class="section-sub mx-auto mt-4 ar-only">لقطات فعلية من مكاننا كما تظهر على خرائط جوجل</p>
+                    <p class="section-sub mx-auto mt-4 en-only">Actual shots of our place, straight from Google Maps</p>
+                </div>
+                <div class="real-photos-grid" id="realPhotosContainer" data-aos="fade-up"></div>
             </div>
         </section>
 
@@ -2129,14 +2293,24 @@
                                 <label class="en-only">Preferred Date</label>
                                 <input type="date" id="appDate" />
                             </div>
+                            <div class="input-group">
+                                <label class="ar-only">الوقت المفضل</label>
+                                <label class="en-only">Preferred Time</label>
+                                <input type="time" id="appTime" />
+                            </div>
+                            <div class="payment-note">
+                                <i class="fas fa-hand-holding-dollar"></i>
+                                <span class="ar-only">لا يوجد دفع الآن — الدفع نقداً في العيادة عند الحضور فقط</span>
+                                <span class="en-only">No payment now — cash, paid at the clinic upon arrival</span>
+                            </div>
                             <button type="submit" class="btn-gold w-full justify-center ar-only">
                                 <i class="fas fa-paper-plane"></i> إرسال الطلب
                             </button>
                             <button type="submit" class="btn-gold w-full justify-center en-only">
                                 <i class="fas fa-paper-plane"></i> Send Request
                             </button>
-                            <p class="text-center text-xs text-muted-2 mt-4 ar-only">سيتم التواصل معك خلال 24 ساعة</p>
-                            <p class="text-center text-xs text-muted-2 mt-4 en-only">We will contact you within 24 hours</p>
+                            <p class="text-center text-xs text-muted-2 mt-4 ar-only">سيتم التواصل معك خلال 24 ساعة عبر واتساب لتأكيد الموعد</p>
+                            <p class="text-center text-xs text-muted-2 mt-4 en-only">We'll contact you within 24 hours on WhatsApp to confirm the appointment</p>
                         </form>
                     </div>
                 </div>
@@ -2182,7 +2356,10 @@ FOOTER
     <div class="container">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
             <div class="col-span-2 lg:col-span-1">
-                <a href="#" class="logo">إيليت <span>سمايل</span></a>
+                <a href="#hero" class="logo">
+                    <span class="ar-only" id="footerLogoTextAr">إيليت <span>سمايل</span></span>
+                    <span class="en-only" id="footerLogoTextEn">Elite <span>Smile</span></span>
+                </a>
                 <p class="mt-4 text-sm leading-relaxed ar-only" id="footerDescAr">عيادة سعودية رائدة في طب الأسنان التجميلي والعلاجي، نقدم خدماتنا بأعلى معايير الجودة والفخامة.</p>
                 <p class="mt-4 text-sm leading-relaxed en-only" id="footerDescEn">A leading Saudi clinic in cosmetic and therapeutic dentistry, offering services with the highest quality and luxury standards.</p>
                 <div class="flex gap-3 mt-6">
@@ -2652,7 +2829,33 @@ MAIN JAVASCRIPT
         }
     }
 
+    function updateBrandName() {
+        // Split "First Last" so the last word gets the accent-colored span,
+        // matching the original two-tone logo style, but with the real business name.
+        function splitName(n) {
+            const parts = (n || '').trim().split(/\s+/);
+            if (parts.length === 1) return { first: '', last: parts[0] || '' };
+            return { first: parts.slice(0, -1).join(' ') + ' ', last: parts[parts.length - 1] };
+        }
+        const ar = splitName(clinicData.name);
+        const en = splitName(clinicData.nameEn || clinicData.name);
+        const arHtml = `${ar.first}<span>${ar.last}</span>`;
+        const enHtml = `${en.first}<span>${en.last}</span>`;
+        ['logoTextAr', 'footerLogoTextAr'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = arHtml;
+        });
+        ['logoTextEn', 'footerLogoTextEn'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = enHtml;
+        });
+        document.title = currentLang === 'ar' ?
+            `${clinicData.name} | ${clinicData.nameEn || clinicData.name}` :
+            `${clinicData.nameEn || clinicData.name} | ${clinicData.name}`;
+    }
+
     function updateContactInfo() {
+        updateBrandName();
         const phone = clinicData.phone.startsWith('966') ? clinicData.phone : '+966 ' + clinicData.phone;
         document.getElementById('clinicPhone').textContent = phone;
         document.getElementById('footerPhone').textContent = phone;
@@ -2668,12 +2871,10 @@ MAIN JAVASCRIPT
         document.getElementById('footerDescEn').textContent =
             `A leading Saudi clinic in cosmetic and therapeutic dentistry in ${clinicData.cityEn || clinicData.city}, offering services with the highest quality and luxury standards.`;
 
-        const waLink = clinicData.whatsapp || `https://wa.me/${formatPhoneForWhatsApp(clinicData.phone)}`;
-        document.getElementById('headerWhatsApp').href = waLink;
-        document.getElementById('mobileWhatsApp').href = waLink;
-        document.getElementById('floatingWa').href = waLink;
-        document.getElementById('heroWhatsAppAr').href = waLink;
-        document.getElementById('heroWhatsAppEn').href = waLink;
+        // Header/mobile/floating/hero WhatsApp buttons intentionally keep their
+        // static href="#appointment" — clicking them opens the booking form
+        // (name, phone, doctor, service, date) instead of jumping straight to
+        // WhatsApp. The actual wa.me link is only built once that form is submitted.
 
         const mapFrame = document.getElementById('clinicMap');
         if (clinicData.lat && clinicData.lng) {
@@ -2780,11 +2981,11 @@ MAIN JAVASCRIPT
     function renderGallery() {
         const container = document.getElementById('galleryContainer');
         const list = clinicData.gallery || GALLERY_DATA;
-        const leadImages = clinicData.leadImages || [];
-        container.innerHTML = list.map((g, idx) => {
-            // If this clinic came from real Google Maps lead data, show its actual photos.
-            const realPhoto = leadImages.length ? leadImages[idx % leadImages.length] : null;
-            const imgUrl = realPhoto || `assets/images/gallery/${g.id}.webp`;
+        // This is the designed Before/After showcase — always uses the curated
+        // demo images, never the raw scraped Google Maps photos (those get their
+        // own "Real Photos" section via renderRealPhotos()).
+        container.innerHTML = list.map((g) => {
+            const imgUrl = `assets/images/gallery/${g.id}.webp`;
             const label = g.label ? (currentLang === 'ar' ? g.label : (g.labelEn || g.label)) :
                 (currentLang === 'ar' ? 'قبل / بعد' : 'Before / After');
             return `
@@ -2797,6 +2998,27 @@ MAIN JAVASCRIPT
             `;
         }).join('');
         if (window.gallerySwiper) window.gallerySwiper.update();
+    }
+
+    // Real, unedited photos scraped from the business's own Google Maps listing.
+    // Shown in their own dedicated section so they never get mixed into the
+    // curated Before/After showcase above.
+    function renderRealPhotos() {
+        const section = document.getElementById('realPhotos');
+        const container = document.getElementById('realPhotosContainer');
+        if (!section || !container) return;
+        const leadImages = clinicData.leadImages || [];
+        if (!leadImages.length) {
+            section.style.display = 'none';
+            return;
+        }
+        section.style.display = '';
+        container.innerHTML = leadImages.map(src => `
+            <div class="real-photo-card" onclick="openImageLightbox('${src}')">
+                <img src="${src}" alt="${currentLang === 'ar' ? clinicData.name : (clinicData.nameEn || clinicData.name)}" loading="lazy" />
+                <span class="zoom-hint"><i class="fas fa-search-plus"></i></span>
+            </div>
+        `).join('');
     }
 
     function renderTestimonials() {
@@ -2896,6 +3118,7 @@ MAIN JAVASCRIPT
         renderServices();
         renderDoctors();
         renderGallery();
+        renderRealPhotos();
         renderTestimonials();
         renderReels();
         renderFAQ();
@@ -2954,6 +3177,7 @@ MAIN JAVASCRIPT
         const phone = document.getElementById('appPhone').value;
         const service = document.getElementById('appService').value;
         const date = document.getElementById('appDate').value;
+        const time = document.getElementById('appTime').value;
         const doctors = clinicData.doctors || DEFAULT_DOCTORS;
         const selectedDoc = doctors.find(d => (d.id || 0) === selectedDoctorId) || doctors[0];
 
@@ -2972,6 +3196,7 @@ MAIN JAVASCRIPT
         const clinicName = currentLang === 'ar' ? clinicData.name : clinicData.nameEn;
         const serviceName = service || (currentLang === 'ar' ? 'غير محدد' : 'Not specified');
         const dateStr = date || (currentLang === 'ar' ? 'غير محدد' : 'Not specified');
+        const timeStr = time || (currentLang === 'ar' ? 'غير محدد' : 'Not specified');
 
         const messageAr =
             `مرحباً، أرغب في حجز موعد في ${clinicName}%0A%0A` +
@@ -2979,7 +3204,9 @@ MAIN JAVASCRIPT
             `📱 الهاتف: ${phone}%0A` +
             `👨‍⚕️ الطبيب: ${docName}%0A` +
             `🦷 الخدمة: ${serviceName}%0A` +
-            `📅 التاريخ: ${dateStr}%0A%0A` +
+            `📅 التاريخ: ${dateStr}%0A` +
+            `🕒 الوقت: ${timeStr}%0A` +
+            `💵 الدفع: نقداً في العيادة عند الحضور%0A%0A` +
             `أتمنى تأكيد الموعد في أقرب وقت. شكراً!`;
 
         const messageEn =
@@ -2988,7 +3215,9 @@ MAIN JAVASCRIPT
             `📱 Phone: ${phone}%0A` +
             `👨‍⚕️ Doctor: ${docName}%0A` +
             `🦷 Service: ${serviceName}%0A` +
-            `📅 Date: ${dateStr}%0A%0A` +
+            `📅 Date: ${dateStr}%0A` +
+            `🕒 Time: ${timeStr}%0A` +
+            `💵 Payment: Cash at the clinic upon arrival%0A%0A` +
             `Please confirm the appointment as soon as possible. Thank you!`;
 
         const message = currentLang === 'ar' ? messageAr : messageEn;
@@ -3052,7 +3281,9 @@ MAIN JAVASCRIPT
     // ============================================================
     // COLOR PICKER (change site accent color live)
     // ============================================================
+    const DEFAULT_ACCENT = { hex: '#0400ff', light: '#5c58ff', dark: '#0000bf' };
     const ACCENT_PRESETS = [
+        { key: 'signature', gold: '#0400ff', light: '#5c58ff', dark: '#0000bf' },
         { key: 'gold', gold: '#c9a84c', light: '#e8d5a3', dark: '#a8893a' },
         { key: 'rose', gold: '#d65d7a', light: '#f0aebd', dark: '#a83f57' },
         { key: 'emerald', gold: '#2f9e6e', light: '#8fd6b4', dark: '#1f6f4c' },
@@ -3094,6 +3325,10 @@ MAIN JAVASCRIPT
         document.querySelectorAll('.cp-swatch').forEach(sw => {
             sw.classList.toggle('active', sw.dataset.color === hex);
         });
+        const hexInput = document.getElementById('cpHexInput');
+        const customInput = document.getElementById('cpCustomColor');
+        if (hexInput && document.activeElement !== hexInput) hexInput.value = hex.toUpperCase();
+        if (customInput) customInput.value = hex;
         if (save) {
             try { localStorage.setItem('siteAccentColor', JSON.stringify({ hex, lightHex, darkHex })); } catch (e) {}
         }
@@ -3119,20 +3354,54 @@ MAIN JAVASCRIPT
         const customInput = document.getElementById('cpCustomColor');
         customInput.addEventListener('input', (e) => setAccentColor(e.target.value));
 
+        // Paste/type a hex code (e.g. #0400FF) — validates and applies live.
+        const hexInput = document.getElementById('cpHexInput');
+        function applyHexFromInput() {
+            let val = hexInput.value.trim();
+            if (!val.startsWith('#')) val = '#' + val;
+            if (/^#([0-9A-Fa-f]{6})$/.test(val)) {
+                setAccentColor(val);
+            } else {
+                showToast(currentLang === 'ar' ? 'كود لون غير صالح، مثال: #0400FF' : 'Invalid hex code, e.g. #0400FF', false);
+            }
+        }
+        hexInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); applyHexFromInput(); }
+        });
+        hexInput.addEventListener('paste', () => setTimeout(applyHexFromInput, 0));
+        hexInput.addEventListener('blur', applyHexFromInput);
+
+        const copyBtn = document.getElementById('cpCopyBtn');
+        copyBtn.addEventListener('click', async () => {
+            const val = hexInput.value.trim();
+            try {
+                await navigator.clipboard.writeText(val);
+            } catch (e) {
+                hexInput.select();
+                document.execCommand('copy');
+            }
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            showToast(currentLang === 'ar' ? 'تم نسخ كود اللون' : 'Color code copied');
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 1200);
+        });
+
         document.getElementById('cpReset').addEventListener('click', () => {
-            setAccentColor('#c9a84c', '#e8d5a3', '#a8893a');
+            setAccentColor(DEFAULT_ACCENT.hex, DEFAULT_ACCENT.light, DEFAULT_ACCENT.dark);
         });
 
         try {
             const saved = JSON.parse(localStorage.getItem('siteAccentColor'));
             if (saved && saved.hex) {
                 setAccentColor(saved.hex, saved.lightHex, saved.darkHex, false);
-                customInput.value = saved.hex;
             } else {
-                setAccentColor('#c9a84c', '#e8d5a3', '#a8893a', false);
+                setAccentColor(DEFAULT_ACCENT.hex, DEFAULT_ACCENT.light, DEFAULT_ACCENT.dark, false);
             }
         } catch (e) {
-            setAccentColor('#c9a84c', '#e8d5a3', '#a8893a', false);
+            setAccentColor(DEFAULT_ACCENT.hex, DEFAULT_ACCENT.light, DEFAULT_ACCENT.dark, false);
         }
     }
 
@@ -3142,6 +3411,28 @@ MAIN JAVASCRIPT
     const menuToggle = document.getElementById('menuToggle');
     const closeMenuBtn = document.getElementById('closeMenu');
     const mobileMenu = document.getElementById('mobileMenu');
+
+    // ============================================================
+    // WHATSAPP CTAs -> BOOKING FORM
+    // Every "WhatsApp" button on the site (header, mobile menu, floating
+    // button, hero) opens the booking form first — collecting name, phone,
+    // doctor, service and preferred date — instead of jumping straight into
+    // a chat. No payment is collected anywhere; it's cash/pay-at-the-clinic.
+    // ============================================================
+    function goToBooking(e) {
+        if (e) e.preventDefault();
+        closeMobileMenu();
+        const section = document.getElementById('appointment');
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showToast(currentLang === 'ar' ?
+            'أكمل بياناتك بالأسفل وسنرسل طلبك عبر واتساب' :
+            'Fill in your details below and we\'ll send your request via WhatsApp');
+        setTimeout(() => {
+            const nameField = currentLang === 'ar' ? document.getElementById('appName') : document.getElementById('appNameEn');
+            nameField?.focus();
+        }, 700);
+    }
+    window.goToBooking = goToBooking;
 
     function openMobileMenu() {
         mobileMenu.classList.add('open');
@@ -3207,6 +3498,8 @@ MAIN JAVASCRIPT
     // ============================================================
     async function init() {
         initColorPicker();
+        const appDateInput = document.getElementById('appDate');
+        if (appDateInput) appDateInput.min = new Date().toISOString().split('T')[0];
         await loadClinicData();
         renderAll();
         setTimeout(initSwipers, 300);
