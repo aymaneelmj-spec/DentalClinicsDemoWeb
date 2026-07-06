@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>إيليت سمايل | Elite Smile</title>
 
-    <!-- Favicon — multiple formats for maximum compatibility -->
+    <!-- Favicon – multiple formats for best compatibility -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -417,7 +417,7 @@
         .btn-gold:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 40px var(--shadow-gold);
-            background: #b8943a;
+            background: var(--gold-dark);
         }
 
         .btn-outline-gold {
@@ -903,6 +903,8 @@
             font-size: 72px;
             color: var(--gold-glow-soft);
             position: relative;
+            background-size: cover !important;
+            background-position: center top !important;
         }
         .doctor-card .img-wrap .badge-cert {
             position: absolute;
@@ -2787,7 +2789,7 @@
         });
 
         // ============================================================
-        // DATA LOADING — FIXED: handles both array and single-object JSON
+        // DATA LOADING — FIXED: handles array, single object, and fallback
         // ============================================================
         async function loadClinicData() {
             const params = new URLSearchParams(window.location.search);
@@ -2798,8 +2800,10 @@
 
             try {
                 const response = await fetch(`/data/${file}.json`);
-                if (!response.ok) throw new Error('File not found');
+                if (!response.ok) throw new Error(`File not found: /data/${file}.json`);
+
                 const data = await response.json();
+                console.log(`✅ Loaded ${file}.json:`, data);
 
                 // CASE 1: data is an array (e.g. data.json)
                 if (Array.isArray(data) && data.length > 0) {
@@ -2823,9 +2827,8 @@
                 }
 
                 throw new Error('Unrecognized data format');
-
             } catch (error) {
-                console.warn('Using default clinic data:', error);
+                console.warn('⚠️ Using default clinic data:', error.message);
                 clinicData = { ...DEFAULT_CLINIC };
                 allClinics = [clinicData];
                 return false;
@@ -2850,21 +2853,66 @@
             return [];
         }
 
+        // ============================================================
+        // NORMALIZE — handles multiple data shapes robustly
+        // ============================================================
         function normalizeClinicData(data) {
+            // Detect format: "rich city" has clinicName, "lead" has name+city+address
             const isRichCity = !!data.clinicName;
             const isLeadFormat = !data.doctors && !data.services && (data.demo_url || data.images_count !== undefined);
 
-            const name = isRichCity ? (data.clinicName.ar || DEFAULT_CLINIC.name) : (data.name || DEFAULT_CLINIC.name);
-            const nameEn = isRichCity ? (data.clinicName.en || name) : (data.nameEn || data.name || DEFAULT_CLINIC.nameEn);
-            const city = isRichCity ? (data.cityLabel && data.cityLabel.ar) || 'الرياض' : (data.city || 'الرياض');
-            const cityEn = isRichCity ? (data.cityLabel && data.cityLabel.en) || city : (data.cityEn || data.city ||
-            'Riyadh');
-            const address = isRichCity ? (data.address && data.address.ar) || 'الرياض - حي العليا' : (data.address ||
-                'الرياض - حي العليا');
-            const addressEn = isRichCity ? (data.address && data.address.en) || address : (data.addressEn || data.address ||
-                'Riyadh - Al Olaya');
+            // --- Extract name ---
+            let name, nameEn;
+            if (isRichCity) {
+                name = data.clinicName.ar || data.clinicName || DEFAULT_CLINIC.name;
+                nameEn = data.clinicName.en || name;
+            } else {
+                name = data.name || data.title || data.clinicName || data.businessName || DEFAULT_CLINIC.name;
+                nameEn = data.nameEn || data.name || data.titleEn || name;
+            }
 
+            // --- Extract city ---
+            let city, cityEn;
+            if (isRichCity) {
+                city = (data.cityLabel && data.cityLabel.ar) || data.cityLabel || data.city || DEFAULT_CLINIC.city;
+                cityEn = (data.cityLabel && data.cityLabel.en) || city;
+            } else {
+                city = data.city || data.location || data.area || DEFAULT_CLINIC.city;
+                cityEn = data.cityEn || data.city || data.locationEn || city;
+            }
+
+            // --- Extract address ---
+            let address, addressEn;
+            if (isRichCity) {
+                address = (data.address && data.address.ar) || data.address || data.location || DEFAULT_CLINIC.address;
+                addressEn = (data.address && data.address.en) || address;
+            } else {
+                address = data.address || data.location || data.street || DEFAULT_CLINIC.address;
+                addressEn = data.addressEn || data.address || data.locationEn || address;
+            }
+
+            // --- Extract phone ---
+            let phone = data.phone || data.telephone || data.contact || DEFAULT_CLINIC.phone;
+            phone = phone.replace(/\s/g, '');
+
+            // --- Extract email ---
+            let email = data.email || data.mail || '';
+
+            // --- Extract coordinates ---
+            let lat = data.lat || data.latitude || null;
+            let lng = data.lng || data.lon || data.longitude || null;
+
+            // --- Extract images ---
             const leadImages = isLeadFormat ? extractLeadImages(data) : (Array.isArray(data.images) ? data.images : []);
+
+            // --- Extract whatsapp ---
+            let whatsapp = data.whatsapp || '';
+            if (whatsapp && !whatsapp.startsWith('http')) {
+                whatsapp = `https://wa.me/${formatPhoneForWhatsApp(whatsapp)}`;
+            }
+            if (!whatsapp) {
+                whatsapp = `https://wa.me/${formatPhoneForWhatsApp(phone)}`;
+            }
 
             return {
                 name,
@@ -2873,15 +2921,14 @@
                 cityEn,
                 address,
                 addressEn,
-                phone: data.phone || DEFAULT_CLINIC.phone,
-                email: data.email || '',
+                phone,
+                email,
                 country: data.country || 'Saudi Arabia',
                 niche: data.niche || 'Dental Clinics',
-                lat: data.lat || data.latitude || null,
-                lng: data.lng || data.lon || data.longitude || null,
-                images_count: data.images_count || 4,
-                whatsapp: data.whatsapp && data.whatsapp.startsWith('http') ?
-                    data.whatsapp : `https://wa.me/${formatPhoneForWhatsApp(data.whatsapp || data.phone || DEFAULT_CLINIC.phone)}`,
+                lat,
+                lng,
+                images_count: data.images_count || data.images?.length || 4,
+                whatsapp,
                 demo_url: data.demo_url || '',
                 images: data.images || [],
                 leadImages: leadImages,
@@ -2903,10 +2950,10 @@
         // ============================================================
 
         function updateHero() {
-            document.getElementById('heroBadgeAr').textContent = (clinicData.badge && clinicData.badge.ar) ||
-                `عيادة رائدة في ${clinicData.city}`;
-            document.getElementById('heroBadgeEn').textContent = (clinicData.badge && clinicData.badge.en) ||
-                `Leading Clinic in ${clinicData.cityEn || clinicData.city}`;
+            const badgeAr = (clinicData.badge && clinicData.badge.ar) || `عيادة رائدة في ${clinicData.city}`;
+            const badgeEn = (clinicData.badge && clinicData.badge.en) || `Leading Clinic in ${clinicData.cityEn || clinicData.city}`;
+            document.getElementById('heroBadgeAr').textContent = badgeAr;
+            document.getElementById('heroBadgeEn').textContent = badgeEn;
             document.getElementById('heroCityAr').textContent = clinicData.city;
             document.getElementById('heroCityEn').textContent = clinicData.cityEn || clinicData.city;
 
