@@ -551,13 +551,20 @@
             aspect-ratio: 1/1.1;
             border-radius: 40px;
             background: var(--gold-glow-soft);
-            backdrop-filter: blur(2px);
             border: 1px solid rgba(201, 168, 76, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+        }
+        .hero-visual-inner img.hero-real-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
         .hero-visual-inner .placeholder-img {
             font-size: 120px;
@@ -766,6 +773,13 @@
         .doctor-card .card-body {
             padding: 24px;
         }
+        .doctor-card .btn-book-doc {
+            margin-top: 16px;
+            width: 100%;
+            justify-content: center;
+            padding: 10px 18px;
+            font-size: 13px;
+        }
 
         /* ============================================================
                    BEFORE / AFTER
@@ -859,6 +873,15 @@
         .reel-card:hover .play-btn {
             background: rgba(201, 168, 76, 0.8);
             transform: scale(1.1);
+        }
+        .reel-card.playing .play-btn {
+            opacity: 0;
+            pointer-events: none;
+        }
+        @media (max-width: 1024px) {
+            .reel-card .play-btn {
+                opacity: 0.9;
+            }
         }
         .reel-card .reel-title {
             position: absolute;
@@ -1157,6 +1180,199 @@
         }
         .modal-box .close-modal:hover {
             color: var(--text-primary);
+        }
+
+        /* ============================================================
+                   IMAGE / VIDEO LIGHTBOX
+                   ============================================================ */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(10, 10, 18, 0.92);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.show {
+            display: flex;
+            animation: modalIn 0.3s ease;
+        }
+        .lightbox-overlay img {
+            max-width: 92vw;
+            max-height: 88vh;
+            width: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+            cursor: default;
+            object-fit: contain;
+        }
+        .lightbox-overlay video {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+            cursor: default;
+            background: #000;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 22px;
+            inset-inline-end: 26px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        /* ============================================================
+                   COLOR PICKER
+                   ============================================================ */
+        .color-picker-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #c9a84c, #e0576b, #6c5ce7, #2ecc71, #2f9bda, #c9a84c);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+            border: 3px solid var(--bg-primary);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .color-picker-btn:hover {
+            transform: scale(1.08) rotate(20deg);
+        }
+        .color-picker-panel {
+            position: fixed;
+            bottom: 96px;
+            right: 28px;
+            z-index: 999;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            width: 220px;
+        }
+        .color-picker-panel.show {
+            display: flex;
+            animation: modalIn 0.3s ease;
+        }
+        .color-picker-panel .cp-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .cp-swatches {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+        .cp-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .cp-swatch:hover {
+            transform: scale(1.15);
+        }
+        .cp-swatch.active::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--text-primary);
+        }
+        .cp-custom-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .cp-custom-row input[type="color"] {
+            width: 36px;
+            height: 28px;
+            border: none;
+            border-radius: 8px;
+            padding: 0;
+            cursor: pointer;
+            background: none;
+        }
+        .cp-reset {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            padding: 4px 0 0;
+        }
+        @media (max-width: 640px) {
+            .color-picker-btn { width: 48px; height: 48px; bottom: 22px; right: 22px; font-size: 18px; }
+            .color-picker-panel { right: 18px; bottom: 82px; width: 190px; }
+        }
+
+        /* ============================================================
+                   GALLERY ZOOM HINT
+                   ============================================================ */
+        .ba-slide {
+            cursor: zoom-in;
+        }
+        .ba-slide .zoom-hint {
+            position: absolute;
+            top: 16px;
+            inset-inline-end: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: scale(0.8);
+        }
+        .ba-slide:hover .zoom-hint {
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* ============================================================
@@ -1590,6 +1806,36 @@
     </div>
 
     <!-- ============================================================
+    IMAGE / VIDEO LIGHTBOX
+    ============================================================ -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <button class="lightbox-close" id="lightboxClose" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" src="" alt="" style="display:none;" />
+        <video id="lightboxVideo" controls playsinline style="display:none;"></video>
+    </div>
+
+    <!-- ============================================================
+    COLOR PICKER
+    ============================================================ -->
+    <button class="color-picker-btn" id="colorPickerBtn" aria-label="تغيير لون الموقع">
+        <i class="fas fa-palette"></i>
+    </button>
+    <div class="color-picker-panel" id="colorPickerPanel">
+        <div class="cp-title ar-only">لون الموقع</div>
+        <div class="cp-title en-only">Site Color</div>
+        <div class="cp-swatches" id="cpSwatches"></div>
+        <div class="cp-custom-row">
+            <input type="color" id="cpCustomColor" value="#c9a84c" />
+            <span class="ar-only">لون مخصص</span>
+            <span class="en-only">Custom</span>
+        </div>
+        <button class="cp-reset" id="cpReset">
+            <span class="ar-only">إعادة الافتراضي</span>
+            <span class="en-only">Reset Default</span>
+        </button>
+    </div>
+
+    <!-- ============================================================
     HEADER
     ============================================================ -->
     <header class="header" id="header" role="banner">
@@ -1737,9 +1983,10 @@
                         </div>
                     </div>
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="hero-visual">
-                       <div class="hero-visual-inner" style="background-image: url('assets/images/hero/1.jpg'); background-size: cover; background-position: center;">
+                       <div class="hero-visual-inner" id="heroVisualInner">
+    <img class="hero-real-img" id="heroImg" src="assets/images/hero/1.webp" alt="" loading="eager" fetchpriority="high" decoding="async" />
     <!-- Keep overlay or remove based on design preference -->
-    <div style="position:absolute;inset:0;background:rgba(250,246,240,0.3);"></div>
+    <div style="position:absolute;inset:0;background:rgba(250,246,240,0.12);"></div>
     <!-- Keep floating shapes and icons if desired -->
     <div class="floating-shape"></div>
     <div class="floating-shape"></div>
@@ -2228,12 +2475,62 @@ MAIN JAVASCRIPT
     });
 
     // ============================================================
+    // IMAGE / VIDEO LIGHTBOX
+    // ============================================================
+    function openImageLightbox(src) {
+        const overlay = document.getElementById('lightboxOverlay');
+        const img = document.getElementById('lightboxImg');
+        const video = document.getElementById('lightboxVideo');
+        video.pause();
+        video.removeAttribute('src');
+        video.style.display = 'none';
+        img.src = src;
+        img.style.display = 'block';
+        overlay.classList.add('show');
+    }
+
+    function openVideoLightbox(src) {
+        const overlay = document.getElementById('lightboxOverlay');
+        const img = document.getElementById('lightboxImg');
+        const video = document.getElementById('lightboxVideo');
+        img.style.display = 'none';
+        img.src = '';
+        video.src = src;
+        video.style.display = 'block';
+        video.muted = false;
+        overlay.classList.add('show');
+        video.play().catch(() => {});
+    }
+
+    function closeLightbox() {
+        const overlay = document.getElementById('lightboxOverlay');
+        const img = document.getElementById('lightboxImg');
+        const video = document.getElementById('lightboxVideo');
+        overlay.classList.remove('show');
+        video.pause();
+        video.removeAttribute('src');
+        img.src = '';
+    }
+    window.openImageLightbox = openImageLightbox;
+    window.openVideoLightbox = openVideoLightbox;
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ============================================================
     // DATA LOADING
     // ============================================================
     async function loadClinicData() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
-        const file = params.get('file') || 'data';
+        // Accept file=cities, file=cities.json, or a leading slash — all work the same.
+        let file = params.get('file') || 'data';
+        file = file.replace(/^\/?data\//, '').replace(/\.json$/i, '');
 
         try {
             const response = await fetch(`/data/${file}.json`);
@@ -2265,21 +2562,67 @@ MAIN JAVASCRIPT
         }
     }
 
+    // Pull real photo URLs out of a Google-Maps-scraped lead record.
+    // These leads (data.json / cities.json) store images either directly in an
+    // `images` field, or buried inside the `demo_url` / `whatsapp` query string
+    // as a comma-separated `images=` parameter (URL-encoded).
+    function extractLeadImages(data) {
+        if (Array.isArray(data.images) && data.images.length) return data.images;
+        const sources = [data.demo_url, data.whatsapp].filter(Boolean);
+        for (const src of sources) {
+            try {
+                const qIndex = src.indexOf('?');
+                if (qIndex === -1) continue;
+                const params = new URLSearchParams(src.substring(qIndex + 1));
+                const imgParam = params.get('images');
+                if (imgParam) {
+                    return imgParam.split(',').map(s => s.trim()).filter(Boolean);
+                }
+            } catch (e) { /* ignore malformed url */ }
+        }
+        return [];
+    }
+
     function normalizeClinicData(data) {
+        // Detect the simple "lead" format (from Google Maps scraping, e.g. data.json/cities.json)
+        // vs the rich per-clinic format (services/doctors/gallery/etc already defined).
+        const isLeadFormat = !data.doctors && !data.services && (data.demo_url || data.images_count !== undefined);
+        const leadImages = isLeadFormat ? extractLeadImages(data) : [];
+
+        // Detect the "rich city" format (e.g. dammam.json) which nests bilingual
+        // text as { ar, en } objects under keys like clinicName / cityLabel / address.
+        const isRichCity = !!data.clinicName;
+        const name = isRichCity ? (data.clinicName.ar || DEFAULT_CLINIC.name) : (data.name || DEFAULT_CLINIC.name);
+        const nameEn = isRichCity ? (data.clinicName.en || name) : (data.nameEn || data.name || DEFAULT_CLINIC.nameEn);
+        const city = isRichCity ? (data.cityLabel && data.cityLabel.ar) || 'الرياض' : (data.city || 'الرياض');
+        const cityEn = isRichCity ? (data.cityLabel && data.cityLabel.en) || city : (data.cityEn || data.city || 'Riyadh');
+        const address = isRichCity ? (data.address && data.address.ar) || 'الرياض - حي العليا' : (data.address || 'الرياض - حي العليا');
+        const addressEn = isRichCity ? (data.address && data.address.en) || address : (data.addressEn || data.address || 'Riyadh - Al Olaya');
+
         return {
-            name: data.name || DEFAULT_CLINIC.name,
-            nameEn: data.nameEn || data.name || DEFAULT_CLINIC.nameEn,
+            name, nameEn, city, cityEn, address, addressEn,
             phone: data.phone || DEFAULT_CLINIC.phone,
-            city: data.city || 'الرياض',
-            cityEn: data.cityEn || data.city || 'Riyadh',
+            email: data.email || '',
             country: data.country || 'Saudi Arabia',
             niche: data.niche || 'Dental Clinics',
-            address: data.address || 'الرياض - حي العليا',
-            addressEn: data.addressEn || data.address || 'Riyadh - Al Olaya',
+            lat: data.lat || data.latitude || null,
+            lng: data.lng || data.lon || data.longitude || null,
             images_count: data.images_count || 4,
-            whatsapp: data.whatsapp || `https://wa.me/${data.phone || DEFAULT_CLINIC.phone}`,
+            whatsapp: data.whatsapp && data.whatsapp.startsWith('http') ?
+                data.whatsapp : `https://wa.me/${formatPhoneForWhatsApp(data.whatsapp || data.phone || DEFAULT_CLINIC.phone)}`,
             demo_url: data.demo_url || '',
-            images: data.images || []
+            images: data.images || [],
+            leadImages: leadImages,
+            badge: data.badge || null,
+            heroDesc: data.heroDesc || null,
+            workingHours: data.workingHours || null,
+            social: data.social || null,
+            doctors: data.doctors || null,
+            services: data.services || null,
+            gallery: data.gallery || null,
+            reviews: data.reviews || null,
+            reels: data.reels || null,
+            faq: data.faq || null
         };
     }
 
@@ -2288,22 +2631,34 @@ MAIN JAVASCRIPT
     // ============================================================
 
     function updateHero() {
-        document.getElementById('heroBadgeAr').textContent = `عيادة رائدة في ${clinicData.city}`;
-        document.getElementById('heroBadgeEn').textContent = `Leading Clinic in ${clinicData.cityEn || clinicData.city}`;
+        document.getElementById('heroBadgeAr').textContent = (clinicData.badge && clinicData.badge.ar) || `عيادة رائدة في ${clinicData.city}`;
+        document.getElementById('heroBadgeEn').textContent = (clinicData.badge && clinicData.badge.en) || `Leading Clinic in ${clinicData.cityEn || clinicData.city}`;
         document.getElementById('heroCityAr').textContent = clinicData.city;
         document.getElementById('heroCityEn').textContent = clinicData.cityEn || clinicData.city;
-        document.getElementById('heroDescAr').innerHTML =
-            `نقدم أفضل خدمات طب الأسنان التجميلية والعلاجية في <span id="heroCityAr">${clinicData.city}</span> بأحدث التقنيات وبأيدي نخبة من الأطباء المتخصصين.`;
-        document.getElementById('heroDescEn').innerHTML =
-            `We offer the best cosmetic and therapeutic dental services in <span id="heroCityEn">${clinicData.cityEn || clinicData.city}</span> with the latest technologies and a team of specialized doctors.`;
+        if (clinicData.heroDesc && clinicData.heroDesc.ar) {
+            document.getElementById('heroDescAr').innerHTML = clinicData.heroDesc.ar;
+            document.getElementById('heroDescEn').innerHTML = clinicData.heroDesc.en || clinicData.heroDesc.ar;
+        } else {
+            document.getElementById('heroDescAr').innerHTML =
+                `نقدم أفضل خدمات طب الأسنان التجميلية والعلاجية في <span id="heroCityAr">${clinicData.city}</span> بأحدث التقنيات وبأيدي نخبة من الأطباء المتخصصين.`;
+            document.getElementById('heroDescEn').innerHTML =
+                `We offer the best cosmetic and therapeutic dental services in <span id="heroCityEn">${clinicData.cityEn || clinicData.city}</span> with the latest technologies and a team of specialized doctors.`;
+        }
+
+        // Real Google Maps photo for lead-based clinics, otherwise the default local hero image.
+        const heroImg = document.getElementById('heroImg');
+        if (heroImg) {
+            heroImg.src = (clinicData.leadImages && clinicData.leadImages[0]) || 'assets/images/hero/1.webp';
+        }
     }
 
     function updateContactInfo() {
         const phone = clinicData.phone.startsWith('966') ? clinicData.phone : '+966 ' + clinicData.phone;
         document.getElementById('clinicPhone').textContent = phone;
         document.getElementById('footerPhone').textContent = phone;
-        document.getElementById('clinicEmail').textContent = `info@${clinicData.name.toLowerCase().replace(/\s/g, '')}.sa`;
-        document.getElementById('footerEmail').textContent = `info@${clinicData.name.toLowerCase().replace(/\s/g, '')}.sa`;
+        const email = clinicData.email || `info@${clinicData.name.toLowerCase().replace(/\s/g, '')}.sa`;
+        document.getElementById('clinicEmail').textContent = email;
+        document.getElementById('footerEmail').textContent = email;
         document.getElementById('clinicAddress').textContent = clinicData.address;
         document.getElementById('clinicAddressEn').textContent = clinicData.addressEn || clinicData.address;
         document.getElementById('footerAddress').textContent = clinicData.address;
@@ -2321,16 +2676,20 @@ MAIN JAVASCRIPT
         document.getElementById('heroWhatsAppEn').href = waLink;
 
         const mapFrame = document.getElementById('clinicMap');
-        if (clinicData.address) {
-            const encodedAddr = encodeURIComponent(clinicData.address);
-            mapFrame.src =
-                `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.456789012345!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d48999d%3A0x8f6f8f8f8f8f8f8f!2s${encodedAddr}!5e0!3m2!1sen!2ssa!4v1700000000000`;
+        if (clinicData.lat && clinicData.lng) {
+            // Exact coordinates available — pin the precise business location
+            mapFrame.src = `https://www.google.com/maps?q=${clinicData.lat},${clinicData.lng}&hl=${currentLang}&z=16&output=embed`;
+        } else {
+            // No coordinates — search by business name + address so it lands on the right business
+            const query = encodeURIComponent(`${clinicData.name} ${clinicData.address || ''}`.trim());
+            mapFrame.src = `https://www.google.com/maps?q=${query}&hl=${currentLang}&z=15&output=embed`;
         }
     }
 
     function renderServices() {
         const container = document.getElementById('servicesContainer');
-        container.innerHTML = SERVICES_DATA.map(s => `
+        const list = clinicData.services || SERVICES_DATA;
+        container.innerHTML = list.map(s => `
                 <div class="glass-card-gold p-6 md:p-8 text-center group" data-aos="fade-up" data-aos-delay="${s.id * 80}">
                     <div class="service-icon"> <i class="fas ${s.icon}"></i> </div>
                     <h3 class="text-xl font-bold mt-4">${currentLang === 'ar' ? s.name : s.nameEn}</h3>
@@ -2344,7 +2703,7 @@ MAIN JAVASCRIPT
         const doctors = clinicData.doctors || DEFAULT_DOCTORS;
         container.innerHTML = doctors.map((d, idx) => `
                 <div class="doctor-card" data-doctor-id="${d.id || idx + 1}" data-aos="fade-up" data-aos-delay="${(idx + 1) * 80}" onclick="selectDoctor(${d.id || idx + 1})">
-                    <div class="img-wrap" style="background-image: url('assets/images/doctors/${d.id || idx + 1}.jpg'); background-size: cover; background-position: center top;">
+                    <div class="img-wrap" style="background-image: url('assets/images/doctors/${d.id || idx + 1}.webp'); background-size: cover; background-position: center top;">
     <span class="badge-cert"><i class="fas fa-certificate"></i> معتمد</span>
 </div>
                     <div class="card-body">
@@ -2354,6 +2713,10 @@ MAIN JAVASCRIPT
                             <span><i class="fas fa-calendar-alt text-gold ml-1"></i> ${d.years || 10} ${currentLang === 'ar' ? 'سنوات خبرة' : 'years'}</span>
                             <span><i class="fas fa-graduation-cap text-gold ml-1"></i> ${currentLang === 'ar' ? (d.certs || 'شهادة معتمدة') : (d.certsEn || 'Certified')}</span>
                         </div>
+                        <button type="button" class="btn-gold btn-book-doc" onclick="event.stopPropagation(); bookWithDoctor(${d.id || idx + 1})">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>${currentLang === 'ar' ? 'احجز مع ' + d.name : 'Book with ' + d.nameEn}</span>
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -2400,24 +2763,46 @@ MAIN JAVASCRIPT
         });
     }
 
+    function bookWithDoctor(id) {
+        selectedDoctorId = id;
+        document.querySelectorAll('.doctor-card').forEach(el => {
+            el.classList.toggle('selected', parseInt(el.dataset.doctorId) === id);
+        });
+        renderDoctorOptions(clinicData.doctors || DEFAULT_DOCTORS);
+        document.getElementById('appointment').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => document.getElementById('appName')?.focus(), 500);
+    }
+
     window.selectDoctor = selectDoctor;
     window.selectDoctorOption = selectDoctorOption;
+    window.bookWithDoctor = bookWithDoctor;
 
     function renderGallery() {
         const container = document.getElementById('galleryContainer');
-        container.innerHTML = GALLERY_DATA.map(g => `
+        const list = clinicData.gallery || GALLERY_DATA;
+        const leadImages = clinicData.leadImages || [];
+        container.innerHTML = list.map((g, idx) => {
+            // If this clinic came from real Google Maps lead data, show its actual photos.
+            const realPhoto = leadImages.length ? leadImages[idx % leadImages.length] : null;
+            const imgUrl = realPhoto || `assets/images/gallery/${g.id}.webp`;
+            const label = g.label ? (currentLang === 'ar' ? g.label : (g.labelEn || g.label)) :
+                (currentLang === 'ar' ? 'قبل / بعد' : 'Before / After');
+            return `
                 <div class="swiper-slide">
-                    <div class="ba-slide" style="background-image: url('assets/images/gallery/${g.id}.jpg'); background-size: cover; background-position: center;">
-    <span class="label">${currentLang === 'ar' ? 'قبل / بعد' : 'Before / After'}</span>
+                    <div class="ba-slide" style="background-image: url('${imgUrl}'); background-size: cover; background-position: center;" onclick="openImageLightbox('${imgUrl}')">
+    <span class="label">${label}</span>
+    <span class="zoom-hint"><i class="fas fa-search-plus"></i></span>
 </div>
                 </div>
-            `).join('');
+            `;
+        }).join('');
         if (window.gallerySwiper) window.gallerySwiper.update();
     }
 
     function renderTestimonials() {
         const container = document.getElementById('testimonialsContainer');
-        container.innerHTML = REVIEWS_DATA.map(r => `
+        const list = clinicData.reviews || REVIEWS_DATA;
+        container.innerHTML = list.map(r => `
                 <div class="swiper-slide">
                     <div class="testimonial-card">
                         <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
@@ -2438,21 +2823,53 @@ MAIN JAVASCRIPT
 
     function renderReels() {
         const container = document.getElementById('reelsContainer');
-        container.innerHTML = REELS_DATA.map((r, idx) => `
-                <div class="reel-card" style="background: linear-gradient(145deg, #1a1a2e, #2d2d44); position: relative; overflow: hidden;">
-    <video muted playsinline loop preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
-        <source src="assets/images/reels/${r.id || idx + 1}.mp4" type="video/mp4">
+        const list = clinicData.reels || REELS_DATA;
+        container.innerHTML = list.map((r, idx) => {
+            const src = r.url && r.url.trim() ? r.url : `assets/images/reels/${r.id || idx + 1}.mp4`;
+            return `
+                <div class="reel-card" data-video-src="${src}" onclick="toggleReelPlay(this)" style="background: linear-gradient(145deg, #1a1a2e, #2d2d44); position: relative; overflow: hidden;">
+    <video class="reel-video" muted playsinline loop preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+        <source src="${src}" type="video/mp4">
     </video>
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.2);"></div>
     <div class="play-btn"><i class="fas fa-play" style="margin-right:4px;"></i></div>
     <div class="reel-title">${currentLang === 'ar' ? r.title : r.titleEn}</div>
 </div>
-            `).join('');
+            `;
+        }).join('');
     }
+
+    // Tap a reel: play it muted inline first tap, then open the full lightbox
+    // player with sound + controls on a second tap (mirrors how reels usually work).
+    function toggleReelPlay(card) {
+        const video = card.querySelector('.reel-video');
+        if (!video) return;
+        if (card.classList.contains('playing')) {
+            openVideoLightbox(card.dataset.videoSrc);
+            return;
+        }
+        document.querySelectorAll('.reel-card.playing').forEach(el => {
+            if (el !== card) {
+                el.classList.remove('playing');
+                const v = el.querySelector('.reel-video');
+                if (v) v.pause();
+            }
+        });
+        card.classList.add('playing');
+        video.currentTime = 0;
+        const playPromise = video.play();
+        if (playPromise && playPromise.catch) {
+            playPromise.catch(() => {
+                showToast(currentLang === 'ar' ? 'اضغط مرة أخرى لتشغيل الفيديو' : 'Tap again to play the video', false);
+            });
+        }
+    }
+    window.toggleReelPlay = toggleReelPlay;
 
     function renderFAQ() {
         const container = document.getElementById('faqContainer');
-        container.innerHTML = FAQ_DATA.map((f, i) => `
+        const list = clinicData.faq || FAQ_DATA;
+        container.innerHTML = list.map((f, i) => `
                 <div class="faq-item ${i === 0 ? 'open' : ''}" data-index="${i}">
                     <div class="faq-question" onclick="toggleFaq(${i})">
                         <span>${currentLang === 'ar' ? f.q : f.qEn}</span>
@@ -2633,6 +3050,93 @@ MAIN JAVASCRIPT
     });
 
     // ============================================================
+    // COLOR PICKER (change site accent color live)
+    // ============================================================
+    const ACCENT_PRESETS = [
+        { key: 'gold', gold: '#c9a84c', light: '#e8d5a3', dark: '#a8893a' },
+        { key: 'rose', gold: '#d65d7a', light: '#f0aebd', dark: '#a83f57' },
+        { key: 'emerald', gold: '#2f9e6e', light: '#8fd6b4', dark: '#1f6f4c' },
+        { key: 'ocean', gold: '#2f8fda', light: '#9dc9ef', dark: '#1f628f' },
+        { key: 'violet', gold: '#7c5cd6', light: '#bfa9ec', dark: '#5a3fa8' },
+        { key: 'amber', gold: '#e08a2b', light: '#f2c48a', dark: '#a8631b' }
+    ];
+
+    function hexToRgb(hex) {
+        const m = hex.replace('#', '');
+        const bigint = parseInt(m, 16);
+        return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+    }
+
+    function shadeColor(hex, percent) {
+        const { r, g, b } = hexToRgb(hex);
+        const amt = Math.round(2.55 * percent);
+        const nr = Math.min(255, Math.max(0, r + amt));
+        const ng = Math.min(255, Math.max(0, g + amt));
+        const nb = Math.min(255, Math.max(0, b + amt));
+        return `#${((1 << 24) + (nr << 16) + (ng << 8) + nb).toString(16).slice(1)}`;
+    }
+
+    function applyAccentColor(hex, lightHex, darkHex) {
+        const light = lightHex || shadeColor(hex, 35);
+        const dark = darkHex || shadeColor(hex, -25);
+        const { r, g, b } = hexToRgb(hex);
+        const root = document.documentElement.style;
+        root.setProperty('--gold', hex);
+        root.setProperty('--gold-light', light);
+        root.setProperty('--gold-dark', dark);
+        root.setProperty('--gold-glow', `rgba(${r}, ${g}, ${b}, 0.3)`);
+        root.setProperty('--gold-glow-soft', `rgba(${r}, ${g}, ${b}, 0.08)`);
+        root.setProperty('--shadow-gold', `0 8px 40px rgba(${r}, ${g}, ${b}, 0.25)`);
+    }
+
+    function setAccentColor(hex, lightHex, darkHex, save = true) {
+        applyAccentColor(hex, lightHex, darkHex);
+        document.querySelectorAll('.cp-swatch').forEach(sw => {
+            sw.classList.toggle('active', sw.dataset.color === hex);
+        });
+        if (save) {
+            try { localStorage.setItem('siteAccentColor', JSON.stringify({ hex, lightHex, darkHex })); } catch (e) {}
+        }
+    }
+    window.setAccentColor = setAccentColor;
+
+    function initColorPicker() {
+        const swatchWrap = document.getElementById('cpSwatches');
+        swatchWrap.innerHTML = ACCENT_PRESETS.map(p => `
+            <div class="cp-swatch" style="background:${p.gold};" data-color="${p.gold}"
+                 onclick="setAccentColor('${p.gold}', '${p.light}', '${p.dark}')"></div>
+        `).join('');
+
+        const btn = document.getElementById('colorPickerBtn');
+        const panel = document.getElementById('colorPickerPanel');
+        btn.addEventListener('click', () => panel.classList.toggle('show'));
+        document.addEventListener('click', (e) => {
+            if (!panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+                panel.classList.remove('show');
+            }
+        });
+
+        const customInput = document.getElementById('cpCustomColor');
+        customInput.addEventListener('input', (e) => setAccentColor(e.target.value));
+
+        document.getElementById('cpReset').addEventListener('click', () => {
+            setAccentColor('#c9a84c', '#e8d5a3', '#a8893a');
+        });
+
+        try {
+            const saved = JSON.parse(localStorage.getItem('siteAccentColor'));
+            if (saved && saved.hex) {
+                setAccentColor(saved.hex, saved.lightHex, saved.darkHex, false);
+                customInput.value = saved.hex;
+            } else {
+                setAccentColor('#c9a84c', '#e8d5a3', '#a8893a', false);
+            }
+        } catch (e) {
+            setAccentColor('#c9a84c', '#e8d5a3', '#a8893a', false);
+        }
+    }
+
+    // ============================================================
     // MOBILE MENU
     // ============================================================
     const menuToggle = document.getElementById('menuToggle');
@@ -2702,6 +3206,7 @@ MAIN JAVASCRIPT
     // INIT
     // ============================================================
     async function init() {
+        initColorPicker();
         await loadClinicData();
         renderAll();
         setTimeout(initSwipers, 300);
