@@ -191,9 +191,49 @@
         [id*="Address"],
         [id*="address"],
         [id*="Phone"],
-        [id*="phone"] {
+        [id*="phone"],
+        [id*="Email"],
+        [id*="email"] {
             overflow-wrap: anywhere;
             word-break: break-word;
+        }
+
+        /* ===== CONTACT LIST (phone / email / address rows) =====
+           Fixes the rows overlapping/jumbling on narrow screens, and shrinks
+           long addresses so they stay readable instead of overflowing. */
+        .contact-list {
+            width: 100%;
+            min-width: 0;
+        }
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            min-width: 0;
+            font-size: clamp(13px, 3.4vw, 15px);
+            line-height: 1.6;
+        }
+        .contact-row i {
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .contact-row span {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            flex: 1;
+        }
+        ul.contact-list {
+            list-style: none;
+        }
+        ul.contact-list .contact-row i {
+            margin-top: 2px;
+        }
+        @media (max-width: 480px) {
+            .contact-row {
+                font-size: 13px;
+                gap: 8px;
+            }
         }
 
         /* Header logo: never pushes nav/buttons off-screen. Shrinks + truncates if needed */
@@ -2642,10 +2682,10 @@
                         <h2 class="section-title en-only">Book Your <span>Appointment</span> Now</h2>
                         <p class="text-muted text-lg mt-4 ar-only">تواصل معنا اليوم واحصل على ابتسامة أحلامك في بيئة فاخرة ورعاية استثنائية</p>
                         <p class="text-muted text-lg mt-4 en-only">Contact us today and get your dream smile in a luxurious environment with exceptional care</p>
-                        <div class="mt-8 flex flex-col gap-3 text-muted">
-                            <div class="flex items-center gap-3"><i class="fas fa-phone text-gold"></i> <span id="clinicPhone">+966 50 000 0000</span></div>
-                            <div class="flex items-center gap-3"><i class="fas fa-envelope text-gold"></i> <span id="clinicEmail">info@elitesmile.sa</span></div>
-                            <div class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-gold"></i> <span id="clinicAddress" class="ar-only">الرياض - حي العليا</span><span id="clinicAddressEn" class="en-only">Riyadh - Al Olaya</span></div>
+                        <div class="mt-8 flex flex-col gap-3 text-muted contact-list">
+                            <div class="flex items-center gap-3 contact-row"><i class="fas fa-phone text-gold"></i> <span id="clinicPhone">+966 50 000 0000</span></div>
+                            <div class="flex items-center gap-3 contact-row"><i class="fas fa-envelope text-gold"></i> <span id="clinicEmail">info@elitesmile.sa</span></div>
+                            <div class="flex items-center gap-3 contact-row"><i class="fas fa-map-marker-alt text-gold"></i> <span id="clinicAddress" class="ar-only">الرياض - حي العليا</span><span id="clinicAddressEn" class="en-only">Riyadh - Al Olaya</span></div>
                         </div>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="100" class="appointment-form">
@@ -2781,10 +2821,10 @@
                 <div>
                     <h4 class="text-white font-bold text-lg mb-4 ar-only">معلومات الاتصال</h4>
                     <h4 class="text-white font-bold text-lg mb-4 en-only">Contact Info</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><i class="fas fa-phone text-gold ml-2"></i> <span id="footerPhone">+966 50 000 0000</span></li>
-                        <li><i class="fas fa-envelope text-gold ml-2"></i> <span id="footerEmail">info@elitesmile.sa</span></li>
-                        <li><i class="fas fa-map-marker-alt text-gold ml-2"></i> <span id="footerAddress" class="ar-only">الرياض - حي العليا</span><span id="footerAddressEn" class="en-only">Riyadh - Al Olaya</span></li>
+                    <ul class="space-y-3 text-sm contact-list">
+                        <li class="contact-row"><i class="fas fa-phone text-gold ml-2"></i> <span id="footerPhone">+966 50 000 0000</span></li>
+                        <li class="contact-row"><i class="fas fa-envelope text-gold ml-2"></i> <span id="footerEmail">info@elitesmile.sa</span></li>
+                        <li class="contact-row"><i class="fas fa-map-marker-alt text-gold ml-2"></i> <span id="footerAddress" class="ar-only">الرياض - حي العليا</span><span id="footerAddressEn" class="en-only">Riyadh - Al Olaya</span></li>
                     </ul>
                 </div>
             </div>
@@ -3319,12 +3359,28 @@
             });
         }
 
+        // Builds a safe ASCII-only slug for the auto-generated fallback email
+        // domain. Using the raw Arabic clinic name here used to produce an
+        // invalid, garbled email (Arabic characters aren't valid in a plain
+        // email domain) which also visually broke the RTL/LTR text layout
+        // where it was displayed. Falls back to a generic word if no Latin
+        // name is available.
+        function slugifyForEmail(str) {
+            return (str || '')
+                .toLowerCase()
+                .normalize('NFKD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '')
+                .trim();
+        }
+
         function updateContactInfo() {
             updateBrandName();
             const phone = clinicData.phone.startsWith('966') ? clinicData.phone : '+966 ' + clinicData.phone;
             document.getElementById('clinicPhone').textContent = phone;
             document.getElementById('footerPhone').textContent = phone;
-            const email = clinicData.email || `info@${clinicData.name.toLowerCase().replace(/\s/g, '')}.sa`;
+            const emailSlug = slugifyForEmail(clinicData.nameEn) || slugifyForEmail(clinicData.name) || 'clinic';
+            const email = clinicData.email || `info@${emailSlug}.sa`;
             document.getElementById('clinicEmail').textContent = email;
             document.getElementById('footerEmail').textContent = email;
             document.getElementById('clinicAddress').textContent = clinicData.address;
