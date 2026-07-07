@@ -205,14 +205,16 @@
             }
         }
         .loader-logo {
-            margin-top: 32px;
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--text-primary);
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            animation: fadeUpLogo 0.8s ease 0.4s forwards;
+           margin-top: 32px;
+    font-size: clamp(15px, 4.5vw, 28px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    opacity: 0;              /* was: opacity:0 + animation already applied */
+    max-width: 88vw;
+    text-align: center;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
         }
         .loader-logo span {
             color: var(--gold);
@@ -328,6 +330,24 @@
             transition: opacity 0.2s ease;
             animation: fadeUpLogo 0.8s ease 0.6s forwards;
         }
+         .loader-logo.reveal {
+    animation: fadeUpLogo 0.6s ease forwards;
+}
+.loader-sub {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted-2);
+    font-weight: 400;
+    letter-spacing: 3px;
+    opacity: 0;
+    /* remove "animation: fadeUpLogo ... forwards" from here */
+}
+<div class="loader-logo" id="loaderLogoText"></div>
+<p class="loader-sub" id="loaderSubText"></p>
+.loader-sub.reveal {
+    animation: fadeUpLogo 0.6s ease 0.1s forwards;
+}
+
         .loader-dots {
             margin-top: 22px;
             display: flex;
@@ -499,6 +519,56 @@
         }
         .header .logo span {
             color: var(--gold);
+        /* ===== SAFE-NAME: prevents any business name from breaking layout ===== */
+.header .logo,
+.loader-logo,
+.modal-box h3,
+#modalContent h3,
+.hero-title,
+#footerLogoTextAr,
+#footerLogoTextEn {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* Header logo: single line, shrinks instead of overflowing the nav row */
+.header .logo {
+    display: inline-block;
+    max-width: 42vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(13px, 3.2vw, 24px);
+}
+@media (max-width: 480px) {
+    .header .logo { max-width: 52vw; font-size: clamp(12px, 4vw, 18px); }
+}
+
+/* Modal / popup titles (the one in your screenshot): wrap, don't overflow */
+.modal-box, #modalContent, .modal-header {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.modal-box h3, #modalContent h3 {
+    font-size: clamp(14px, 4.5vw, 22px);
+    line-height: 1.4;
+}
+
+/* Loader name: wraps and shrinks instead of forcing single line */
+.loader-logo {
+    max-width: 88vw;
+    font-size: clamp(15px, 4.5vw, 28px);
+    text-align: center;
+    line-height: 1.35;
+}
+
+/* Address lines everywhere */
+[id*="Address"], [id*="address"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
         }
         .nav-link {
             position: relative;
@@ -1424,6 +1494,15 @@
         .modal-box .close-modal:hover {
             color: var(--text-primary);
         }
+        .modal-box .close-modal,
+.modal-header .close-btn {
+    flex-shrink: 0;
+}
+.modal-header, .modal-box > div:first-child {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
 
         /* ===== LIGHTBOX ===== */
         .lightbox-overlay {
@@ -3000,15 +3079,20 @@
                 `${clinicData.nameEn || clinicData.name} | ${clinicData.name}`;
         }
 
-        function updateLoaderBrand() {
-            const logoEl = document.getElementById('loaderLogoText');
-            const subEl = document.getElementById('loaderSubText');
-            if (!logoEl || !subEl) return;
-            const ar = splitName(clinicData.name);
-            const enName = (clinicData.nameEn || clinicData.name || '').toUpperCase();
-            logoEl.innerHTML = `${ar.first}<span>${ar.last}</span>`;
-            subEl.textContent = enName;
-        }
+       function updateLoaderBrand() {
+    const logoEl = document.getElementById('loaderLogoText');
+    const subEl = document.getElementById('loaderSubText');
+    if (!logoEl || !subEl) return;
+    const ar = splitName(clinicData.name);
+    const enName = (clinicData.nameEn || clinicData.name || '').toUpperCase();
+    logoEl.innerHTML = `${ar.first}<span>${ar.last}</span>`;
+    subEl.textContent = enName;
+    // reveal only now, after real data is set
+    requestAnimationFrame(() => {
+        logoEl.classList.add('reveal');
+        subEl.classList.add('reveal');
+    });
+}
 
         function updateContactInfo() {
             updateBrandName();
