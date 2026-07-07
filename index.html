@@ -2682,11 +2682,6 @@
                         <h2 class="section-title en-only">Book Your <span>Appointment</span> Now</h2>
                         <p class="text-muted text-lg mt-4 ar-only">تواصل معنا اليوم واحصل على ابتسامة أحلامك في بيئة فاخرة ورعاية استثنائية</p>
                         <p class="text-muted text-lg mt-4 en-only">Contact us today and get your dream smile in a luxurious environment with exceptional care</p>
-                        <div class="mt-8 flex flex-col gap-3 text-muted contact-list">
-                            <div class="flex items-center gap-3 contact-row"><i class="fas fa-phone text-gold"></i> <span id="clinicPhone">+966 50 000 0000</span></div>
-                            <div class="flex items-center gap-3 contact-row"><i class="fas fa-envelope text-gold"></i> <span id="clinicEmail">info@elitesmile.sa</span></div>
-                            <div class="flex items-center gap-3 contact-row"><i class="fas fa-map-marker-alt text-gold"></i> <span id="clinicAddress" class="ar-only">الرياض - حي العليا</span><span id="clinicAddressEn" class="en-only">Riyadh - Al Olaya</span></div>
-                        </div>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="100" class="appointment-form">
                         <form id="appointmentForm" novalidate>
@@ -3377,14 +3372,10 @@
         function updateContactInfo() {
             updateBrandName();
             const phone = clinicData.phone.startsWith('966') ? clinicData.phone : '+966 ' + clinicData.phone;
-            document.getElementById('clinicPhone').textContent = phone;
             document.getElementById('footerPhone').textContent = phone;
             const emailSlug = slugifyForEmail(clinicData.nameEn) || slugifyForEmail(clinicData.name) || 'clinic';
             const email = clinicData.email || `info@${emailSlug}.sa`;
-            document.getElementById('clinicEmail').textContent = email;
             document.getElementById('footerEmail').textContent = email;
-            document.getElementById('clinicAddress').textContent = clinicData.address;
-            document.getElementById('clinicAddressEn').textContent = clinicData.addressEn || clinicData.address;
             document.getElementById('footerAddress').textContent = clinicData.address;
             document.getElementById('footerAddressEn').textContent = clinicData.addressEn || clinicData.address;
             document.getElementById('footerDescAr').textContent =
