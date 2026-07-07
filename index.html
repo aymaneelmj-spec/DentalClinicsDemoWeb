@@ -154,7 +154,7 @@
             line-height: 1.6;
         }
 
-        .lang-en body {
+        body.lang-en {
             direction: ltr;
         }
         .lang-en .ar-only {
@@ -1836,16 +1836,14 @@
         .hidden {
             display: none;
         }
+        /* Base = mobile-first: desktop nav hidden, hamburger visible */
         .lg\:flex {
+            display: none;
+        }
+        .lg\:hidden {
             display: flex;
         }
         @media (max-width: 1024px) {
-            .lg\:flex {
-                display: none;
-            }
-            .lg\:hidden {
-                display: flex;
-            }
             .lg\:grid-cols-2 {
                 grid-template-columns: 1fr;
             }
@@ -1856,15 +1854,13 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
-        .lg\:hidden {
-            display: none;
-        }
+        /* Desktop override, defined LAST so it always wins at >=1024px */
         @media (min-width: 1024px) {
-            .lg\:hidden {
-                display: none;
-            }
             .lg\:flex {
                 display: flex;
+            }
+            .lg\:hidden {
+                display: none;
             }
         }
 
@@ -2016,7 +2012,7 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-ar">
 
     <!-- ============================================================
     LOADING SCREEN
