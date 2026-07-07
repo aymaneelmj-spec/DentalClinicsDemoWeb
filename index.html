@@ -204,135 +204,28 @@
                 transform: rotate(360deg);
             }
         }
-        .loader-logo {
-           margin-top: 32px;
+         .loader-logo {
+    margin-top: 32px;
     font-size: clamp(15px, 4.5vw, 28px);
     font-weight: 900;
     letter-spacing: 2px;
     color: var(--text-primary);
-    opacity: 0;              /* was: opacity:0 + animation already applied */
+    opacity: 0;
     max-width: 88vw;
     text-align: center;
     line-height: 1.35;
     overflow-wrap: anywhere;
-        }
-        .loader-logo span {
-            color: var(--gold);
-        }
-        @keyframes fadeUpLogo {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .loader-shimmer {
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent, rgba(4, 0, 255, 0.1), transparent, rgba(4, 0, 255, 0.05),
-                    transparent);
-            animation: shimmerSpin 3s linear infinite;
-        }
-        @keyframes shimmerSpin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .loader-icon-center {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--gold);
-            animation: pulseTooth 1.4s ease-in-out infinite;
-        }
-        @keyframes pulseTooth {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.85;
-            }
-            50% {
-                transform: scale(1.15);
-                opacity: 1;
-            }
-        }
-        .loader-visual {
-            position: relative;
-            width: 80px;
-            height: 80px;
-        }
-        .loader-orbit {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            animation: orbitSpin 6s linear infinite;
-        }
-        .loader-orbit-icon {
-            position: absolute;
-            font-size: 15px;
-            color: var(--gold-light);
-            opacity: 0.85;
-            animation: orbitCounterSpin 6s linear infinite;
-        }
-        .oi-1 {
-            top: -34px;
-            left: 32px;
-        }
-        .oi-2 {
-            top: 32px;
-            left: 98px;
-            animation-delay: 0.2s;
-        }
-        .oi-3 {
-            top: 98px;
-            left: 32px;
-            animation-delay: 0.4s;
-        }
-        .oi-4 {
-            top: 32px;
-            left: -34px;
-            animation-delay: 0.6s;
-        }
-        @keyframes orbitSpin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes orbitCounterSpin {
-            0% {
-                transform: rotate(0deg) scale(0.9);
-                opacity: 0.5;
-            }
-            50% {
-                transform: rotate(-180deg) scale(1.15);
-                opacity: 1;
-            }
-            100% {
-                transform: rotate(-360deg) scale(0.9);
-                opacity: 0.5;
-            }
-        }
-        .loader-sub {
-            margin-top: 10px;
-            font-size: 13px;
-            color: var(--text-muted-2);
-            font-weight: 400;
-            letter-spacing: 3px;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            animation: fadeUpLogo 0.8s ease 0.6s forwards;
-        }
-         .loader-logo.reveal {
+    word-break: break-word;
+}
+
+.loader-logo span {
+    color: var(--gold);
+}
+
+.loader-logo.reveal {
     animation: fadeUpLogo 0.6s ease forwards;
 }
+
 .loader-sub {
     margin-top: 10px;
     font-size: 13px;
@@ -340,10 +233,8 @@
     font-weight: 400;
     letter-spacing: 3px;
     opacity: 0;
-    /* remove "animation: fadeUpLogo ... forwards" from here */
 }
-<div class="loader-logo" id="loaderLogoText"></div>
-<p class="loader-sub" id="loaderSubText"></p>
+
 .loader-sub.reveal {
     animation: fadeUpLogo 0.6s ease 0.1s forwards;
 }
@@ -519,56 +410,9 @@
         }
         .header .logo span {
             color: var(--gold);
-        /* ===== SAFE-NAME: prevents any business name from breaking layout ===== */
-.header .logo,
-.loader-logo,
-.modal-box h3,
-#modalContent h3,
-.hero-title,
-#footerLogoTextAr,
-#footerLogoTextEn {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
-}
 
-/* Header logo: single line, shrinks instead of overflowing the nav row */
-.header .logo {
-    display: inline-block;
-    max-width: 42vw;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: clamp(13px, 3.2vw, 24px);
-}
-@media (max-width: 480px) {
-    .header .logo { max-width: 52vw; font-size: clamp(12px, 4vw, 18px); }
-}
 
-/* Modal / popup titles (the one in your screenshot): wrap, don't overflow */
-.modal-box, #modalContent, .modal-header {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-.modal-box h3, #modalContent h3 {
-    font-size: clamp(14px, 4.5vw, 22px);
-    line-height: 1.4;
-}
-
-/* Loader name: wraps and shrinks instead of forcing single line */
-.loader-logo {
-    max-width: 88vw;
-    font-size: clamp(15px, 4.5vw, 28px);
-    text-align: center;
-    line-height: 1.35;
-}
-
-/* Address lines everywhere */
-[id*="Address"], [id*="address"] {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
-
+       .nav-link {
         }
         .nav-link {
             position: relative;
@@ -2116,8 +1960,8 @@
                 <i class="fas fa-star loader-orbit-icon oi-4"></i>
             </div>
         </div>
-        <div class="loader-logo" id="loaderLogoText">إيليت <span>سمايل</span></div>
-        <p class="loader-sub" id="loaderSubText">ELITE SMILE</p>
+        <div class="loader-logo" id="loaderLogoText"></div>
+<p class="loader-sub" id="loaderSubText"></p>
         <div class="loader-dots" aria-hidden="true"><span></span><span></span><span></span></div>
     </div>
 
@@ -3082,18 +2926,20 @@
        function updateLoaderBrand() {
     const logoEl = document.getElementById('loaderLogoText');
     const subEl = document.getElementById('loaderSubText');
+
     if (!logoEl || !subEl) return;
+
     const ar = splitName(clinicData.name);
     const enName = (clinicData.nameEn || clinicData.name || '').toUpperCase();
+
     logoEl.innerHTML = `${ar.first}<span>${ar.last}</span>`;
     subEl.textContent = enName;
-    // reveal only now, after real data is set
+
     requestAnimationFrame(() => {
         logoEl.classList.add('reveal');
         subEl.classList.add('reveal');
     });
 }
-
         function updateContactInfo() {
             updateBrandName();
             const phone = clinicData.phone.startsWith('966') ? clinicData.phone : '+966 ' + clinicData.phone;
