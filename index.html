@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>إيليت سمايل | Elite Smile</title>
 
     <!-- Favicon – multiple formats for best compatibility -->
@@ -244,6 +244,8 @@
         #loading-screen {
             position: fixed;
             inset: 0;
+            height: 100vh;
+            height: 100dvh;
             z-index: 99999;
             display: flex;
             flex-direction: column;
@@ -252,6 +254,8 @@
             background: var(--bg-primary);
             transition: opacity 1s ease, visibility 1s ease;
             padding: 20px;
+            padding-top: max(20px, env(safe-area-inset-top));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
         }
         #loading-screen.hidden {
             opacity: 0;
@@ -568,7 +572,10 @@
             left: 0;
             right: 0;
             z-index: 999;
-            padding: 14px 0;
+            padding-bottom: 14px;
+            padding-top: max(14px, env(safe-area-inset-top));
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
             transition: all var(--transition);
             background: var(--header-bg);
             backdrop-filter: blur(18px) saturate(1.2);
@@ -578,7 +585,8 @@
         }
         .header.scrolled {
             box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
-            padding: 10px 0;
+            padding-top: max(10px, env(safe-area-inset-top));
+            padding-bottom: 10px;
         }
         .header .logo {
             font-size: 24px;
@@ -637,6 +645,23 @@
         }
         .mobile-menu.open {
             transform: translateX(0);
+        }
+        .mobile-menu {
+            padding-top: max(40px, env(safe-area-inset-top));
+            padding-bottom: max(40px, env(safe-area-inset-bottom));
+            padding-left: max(40px, env(safe-area-inset-left));
+            padding-right: max(40px, env(safe-area-inset-right));
+            overflow-y: auto;
+        }
+        @media (max-height: 480px) and (orientation: landscape) {
+            .mobile-menu {
+                gap: 14px;
+                padding-top: max(20px, env(safe-area-inset-top));
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+            .mobile-menu a {
+                font-size: 20px;
+            }
         }
         .mobile-menu a {
             font-size: 28px;
@@ -714,13 +739,24 @@
         /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
             background: var(--bg-primary);
-            padding-top: 80px;
+            padding-top: max(80px, calc(80px + env(safe-area-inset-top)));
             padding-bottom: 40px;
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+        /* Short viewports (mobile landscape, small laptops with big taskbars) */
+        @media (max-height: 480px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding-top: 90px;
+                padding-bottom: 30px;
+            }
         }
         .hero::before {
             content: '';
@@ -1446,8 +1482,8 @@
         /* ===== FLOATING WHATSAPP ===== */
         .floating-wa {
             position: fixed;
-            bottom: 28px;
-            left: 28px;
+            bottom: max(28px, calc(env(safe-area-inset-bottom) + 16px));
+            left: max(28px, calc(env(safe-area-inset-left) + 16px));
             z-index: 999;
             width: 60px;
             height: 60px;
@@ -1597,8 +1633,8 @@
         /* ===== COLOR PICKER ===== */
         .color-picker-btn {
             position: fixed;
-            bottom: 28px;
-            right: 28px;
+            bottom: max(28px, calc(env(safe-area-inset-bottom) + 16px));
+            right: max(28px, calc(env(safe-area-inset-right) + 16px));
             z-index: 999;
             width: 56px;
             height: 56px;
@@ -1619,8 +1655,8 @@
         }
         .color-picker-panel {
             position: fixed;
-            bottom: 96px;
-            right: 28px;
+            bottom: max(96px, calc(env(safe-area-inset-bottom) + 84px));
+            right: max(28px, calc(env(safe-area-inset-right) + 16px));
             z-index: 999;
             background: var(--bg-primary);
             border: 1px solid var(--border-light);
@@ -1870,6 +1906,115 @@
             }
             .modal-box {
                 padding: 28px 20px;
+            }
+        }
+
+        /* Extra-small phones & folded/cover screens (e.g. Galaxy Z Fold cover, small Android) */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero-title {
+                font-size: 1.7rem;
+            }
+            .hero-desc {
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .header .logo {
+                font-size: 17px;
+                max-width: 46vw;
+            }
+            .btn-gold,
+            .btn-outline-gold,
+            .btn-whatsapp {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+            .appointment-form {
+                padding: 16px 12px;
+            }
+            .appointment-form .doctor-select-grid {
+                grid-template-columns: 1fr;
+            }
+            .real-photos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .floating-wa {
+                width: 46px;
+                height: 46px;
+                font-size: 20px;
+            }
+            .color-picker-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+        }
+
+        /* Foldable / very narrow devices in the ~280-320px cover-screen range */
+        @media (max-width: 320px) {
+            .hero-title {
+                font-size: 1.45rem;
+            }
+            .hero-stats {
+                gap: 8px 14px;
+            }
+            .modal-box {
+                padding: 20px 14px;
+            }
+            .toast {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+
+        /* Large desktops / wide monitors: keep content from stretching too thin */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1440px;
+            }
+        }
+
+        /* Tablet portrait fine-tuning (iPad, Android tablets) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .real-photos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .hero-visual-inner {
+                max-width: 440px;
+            }
+        }
+
+        /* Foldable inner/unfolded screens & short-height tablets in landscape */
+        @media (max-height: 420px) and (orientation: landscape) and (min-width: 481px) {
+            .hero {
+                min-height: auto;
+                padding-top: 90px;
+                padding-bottom: 24px;
+            }
+            .section-padding {
+                padding: 32px 0;
+            }
+        }
+
+        /* Respect user's reduced-motion preference across all devices */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
             }
         }
 
